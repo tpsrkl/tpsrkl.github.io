@@ -21,12 +21,12 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="title:攻防tags:">
+  <meta name="description" content="title:攻防categories:攻防tags:攻防">
 <meta property="og:type" content="article">
 <meta property="og:title" content="攻防">
 <meta property="og:url" content="http://yoursite.com/2020/07/17/%E6%94%BB%E9%98%B2/index.html">
 <meta property="og:site_name" content="嘘&amp;blogs">
-<meta property="og:description" content="title:攻防tags:">
+<meta property="og:description" content="title:攻防categories:攻防tags:攻防">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20200717203900284.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20200717203927844.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70">
@@ -44,7 +44,7 @@
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20200717214151849.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20200717214326192.png">
 <meta property="article:published_time" content="2020-07-17T13:48:11.641Z">
-<meta property="article:modified_time" content="2020-10-03T05:29:18.464Z">
+<meta property="article:modified_time" content="2020-10-03T05:43:31.911Z">
 <meta property="article:author" content="嘘">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200717203900284.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70">
@@ -240,7 +240,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-10-03 13:29:18" itemprop="dateModified" datetime="2020-10-03T13:29:18+08:00">2020-10-03</time>
+                <time title="修改时间：2020-10-03 13:43:31" itemprop="dateModified" datetime="2020-10-03T13:43:31+08:00">2020-10-03</time>
               </span>
 
           <br>
@@ -269,7 +269,7 @@
 
       
         <hr>
-<p>title:攻防<br>tags:</p>
+<p>title:攻防<br>categories:攻防<br>tags:攻防</p>
 <a id="more"></a>
 <hr>
 <p>1.<img data-src="https://img-blog.csdnimg.cn/20200717203900284.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/20200717203927844.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">)WP：题目定义了一个demo类，首先包含构造函数，析构函数，和魔术方法（——wakeup()）当变量进行反序列化时回先执行wakeup函数,以及私有变量file。这里提示flag在fl4g.php之中，当实例销毁时会输出变量。再看下面GET传参var变量，变量经过base64解密，解密后经过正则表达式，若var变量存在o或者C不区分大小写输出stop hacking。否则进行发序列化。现在就是构造var变量的值。正则表达式可以采用+绕过，而wakeup在小于PHP7版本下可以通过实例值与对象值不相等绕过，再将fl4g.php进行序列化<br>O:4:”Demo”:1:{s:10:”Demofile”;s:8:”fl4g.php”;}在进行base64加密即可得到flag.<br>2.<img data-src="https://img-blog.csdnimg.cn/20200717205451969.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">/<br><img data-src="https://img-blog.csdnimg.cn/20200717205728637.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">WP:打开题目发现是个搜索框猜测题目类型为sql注入。使用SQL语句’ and 0 union select 1,TABLE_SCHEMA,TABLE_NAME from INFORMATION_SCHEMA.COLUMNS #去得到表名。<br><img data-src="https://img-blog.csdnimg.cn/20200717210932499.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="发现"><br>发现咱们需要的东西：secret_table。接下来去获取表单的内容’ and 0 union select 1,column_name,data_type from information_schema.columns where table_name=’secret_table’# 得到 secret_table。<br><img data-src="https://img-blog.csdnimg.cn/20200717211202256.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="发现"><br>发现flag存在的位置以记名字。<br>‘ and 0 union select 1,2,fl4g from secret_table #去得到flag。上述’去闭合前一个’，#去闭合最后一个。<br>3.<img data-src="https://img-blog.csdnimg.cn/20200717211510728.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="WP"><br>WP：这个题目是带一个附件的解压后是这样的<img data-src="https://img-blog.csdnimg.cn/2020071721164687.png!%5B%E5%9C%A8%E8%BF%99%E9%87%8C%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E6%8F%8F%E8%BF%B0%5D(https://img-blog.csdnimg.cn/2020071721174890.png" alt="在这里插入图片描述"></p>
