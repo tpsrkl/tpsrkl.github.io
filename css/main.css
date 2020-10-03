@@ -1267,7 +1267,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #4a93ff;
+  background: #1f5ca4;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2886,7 +2886,7 @@ code {
   background-color: rgba(0,0,0,0.75);
 }
 body {
-  background: url("../images/007.jpg");
+  background: url("../images/009.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: 50% 50%;
