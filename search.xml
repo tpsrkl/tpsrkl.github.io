@@ -39,6 +39,10 @@
 <td align="center">空指令模块，对运行程序不会造成任何实质影响的空操作或无关操作指令。如:show nops.</td>
 </tr>
 <tr>
+<td align="center">———</td>
+<td align="center">—</td>
+</tr>
+<tr>
 <td align="center">POC验证程序:当互联网暴露出高危漏洞或挖出0day，为了了解漏洞的影响面，这时候就需要POC批量验证。</td>
 <td align="center"></td>
 </tr>
