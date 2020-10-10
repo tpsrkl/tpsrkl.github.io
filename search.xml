@@ -61,9 +61,8 @@
 <ul>
 <li>open:开放</li>
 <li>filter:过滤</li>
-<li>close:关闭</li>
+<li>close:关闭<br>同时metasploit矿架中也内置了nmap接口,也可以使用nmap进行扫描<br><img data-src="006.png" alt="图片"><br>nmap扫描有个好处，他显示对应端口的服务信息。你可以根据对应端口的服务信息来找寻漏洞。 </li>
 </ul>
-<p>   同时metasploit矿架中也内置了nmap接口,也可以使用nmap进行扫描<br>   <img data-src="006.png" alt="图片"><br>   nmap扫描有个好处，他显示对应端口的服务信息。你可以根据对应端口的服务信息来找寻漏洞。 </p>
 ]]></content>
       <categories>
         <category>渗透测试</category>
