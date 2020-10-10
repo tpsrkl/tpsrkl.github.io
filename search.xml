@@ -6,7 +6,7 @@
     <content><![CDATA[<p>metasploit的学习与使用</p>
 <a id="more"></a>
 <hr>
-<p><strong><em>metasploit简介</em></strong><br>     metasploit(Metasploit Framework)是一款开源的安全漏洞检测工具，它是完全颠覆了已有的渗透测试方式。几乎所有的流行操作系统都支持Metasploit。<br>  <a href="https://github.com/rapid7/metasploit-framework">metasploit下载地址</a>，kali里面预装了metasploit。在终端输入msfconsole即可使用。<br><strong><em>metasploit模块介绍</em></strong><br>  <img data-src="images/001.png" alt="图片"><br>  |模块|作用|<br>  |:-:|:-:|<br>  |auxiliary|辅助模块，不会与目标机建立连接，主要用于收集信息。如，嗅探，指纹识别，扫描端口等|<br>  |exploit|漏洞利用模块，利用系统或应用漏洞进行攻击。|<br>  |payload|攻击载荷模块，期望目标系统在被渗透攻击之后完成实际功能的代码|<br>  |post|后期渗透模块，在获取目标系统控制权之后进行一系列的后渗透攻击。如:获取敏感信息等|<br>  |encode|编码模块，对攻击载荷进行免杀处理防止被防火墙发现，避免在渗透过程中出现‘坏字符’|<br>  |nops|空指令模块，对运行程序不会造成任何实质影响的空操作或无关操作指令。如:show nops.|<br>   POC验证程序:当互联网暴露出高危漏洞或挖出0day，为了了解漏洞的影响面，这时候就需要POC批量验证。<br>   跳板攻击:攻击者通过控制N个主机向目标机进行攻击。跳板攻击分为两类：</p>
+<p><strong><em>metasploit简介</em></strong><br>     metasploit(Metasploit Framework)是一款开源的安全漏洞检测工具，它是完全颠覆了已有的渗透测试方式。几乎所有的流行操作系统都支持Metasploit。<br>  <a href="https://github.com/rapid7/metasploit-framework">metasploit下载地址</a>，kali里面预装了metasploit。在终端输入msfconsole即可使用。<br><strong><em>metasploit模块介绍</em></strong><br>  <img data-src="metasploit/001.png" alt="图片"><br>  |模块|作用|<br>  |:-:|:-:|<br>  |auxiliary|辅助模块，不会与目标机建立连接，主要用于收集信息。如，嗅探，指纹识别，扫描端口等|<br>  |exploit|漏洞利用模块，利用系统或应用漏洞进行攻击。|<br>  |payload|攻击载荷模块，期望目标系统在被渗透攻击之后完成实际功能的代码|<br>  |post|后期渗透模块，在获取目标系统控制权之后进行一系列的后渗透攻击。如:获取敏感信息等|<br>  |encode|编码模块，对攻击载荷进行免杀处理防止被防火墙发现，避免在渗透过程中出现‘坏字符’|<br>  |nops|空指令模块，对运行程序不会造成任何实质影响的空操作或无关操作指令。如:show nops.|<br>   POC验证程序:当互联网暴露出高危漏洞或挖出0day，为了了解漏洞的影响面，这时候就需要POC批量验证。<br>   跳板攻击:攻击者通过控制N个主机向目标机进行攻击。跳板攻击分为两类：</p>
 <ul>
 <li>中继型跳板:这类不会对攻击者发送的包进行更改，容易被追踪发现。</li>
 <li>控制型跳板:这类会对攻击者发送的包进行改变，不容易被追踪<br>但不论容不容易还是什么目的，在未得对方许可授权下不要对任何网站或个人进行攻击。<br><strong><em>metasploit渗透攻击步骤</em></strong><br>简要的说明下</li>
@@ -14,7 +14,7 @@
 <li>选择漏洞利用模块</li>
 <li>配置攻击载荷</li>
 <li>选择编码技术</li>
-<li>开始攻击<br><strong><em>metasploit模块的使用</em></strong><h5 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h5>这里使用search scanner/port查找可以用模块。如图：<br><img data-src="./images/002.png" alt="图片"><br>这里使用模块4.使用 use auxiliary/scanner/portscan/tcp 使用辅助模块。这个模块是基于tcp扫描的。<br><img data-src="./images/003.png" alt="图片"><table>
+<li>开始攻击<br><strong><em>metasploit模块的使用</em></strong><h5 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h5>这里使用search scanner/port查找可以用模块。如图：<br><img data-src="./metasploit/002.png" alt="图片"><br>这里使用模块4.使用 use auxiliary/scanner/portscan/tcp 使用辅助模块。这个模块是基于tcp扫描的。<br><img data-src="./metasploit/003.png" alt="图片"><table>
 <thead>
 <tr>
 <th align="center">扫描方式</th>
@@ -49,11 +49,11 @@
 </li>
 </ul>
 <hr>
-<h5 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h5><p>   输入info查看模块配置信息<br>   <img data-src="../images/004.png" alt="图片"><br>   yes为必须输入，不可空缺。这里只需要设置RHOSTS(目标地址)使用set RHOSTS PATH，set PORTS number-number(探测的端口)。<br>   设置完后可以使用show options查看刚才的配置。<br>   使用exploit或者run运行模块。<br>   <img data-src="images/005.png" alt="图片"><br>   这里可以只扫描了1-10000的端口。<br>   端口状态有三种</p>
+<h5 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h5><p>   输入info查看模块配置信息<br>   <img data-src="../metasqploit/004.png" alt="图片"><br>   yes为必须输入，不可空缺。这里只需要设置RHOSTS(目标地址)使用set RHOSTS PATH，set PORTS number-number(探测的端口)。<br>   设置完后可以使用show options查看刚才的配置。<br>   使用exploit或者run运行模块。<br>   <img data-src="metasploit/005.png" alt="图片"><br>   这里可以只扫描了1-10000的端口。<br>   端口状态有三种</p>
 <ul>
 <li>open:开放</li>
 <li>filter:过滤</li>
-<li>close:关闭<br>同时metasploit矿架中也内置了nmap接口,也可以使用nmap进行扫描<br><img data-src="images/006.png" alt="图片"><br>nmap扫描有个好处，他显示对应端口的服务信息。你可以根据对应端口的服务信息来找寻漏洞。 </li>
+<li>close:关闭<br>同时metasploit矿架中也内置了nmap接口,也可以使用nmap进行扫描<br><img data-src="metasploit/006.png" alt="图片"><br>nmap扫描有个好处，他显示对应端口的服务信息。你可以根据对应端口的服务信息来找寻漏洞。 </li>
 </ul>
 ]]></content>
       <categories>
