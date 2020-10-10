@@ -14,7 +14,7 @@
 <li>选择漏洞利用模块</li>
 <li>配置攻击载荷</li>
 <li>选择编码技术</li>
-<li>开始攻击<br><strong><em>metasploit模块的使用</em></strong><h5 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h5>这里使用search scanner/port查找可以用模块。如图：<br><img data-src="../images/002.png" alt="图片"><br>这里使用模块4.使用 use auxiliary/scanner/portscan/tcp 使用辅助模块。这个模块是基于tcp扫描的。<br><img data-src="../images/003.png" alt="图片"><table>
+<li>开始攻击<br><strong><em>metasploit模块的使用</em></strong><h5 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h5>这里使用search scanner/port查找可以用模块。如图：<br><img data-src="./images/002.png" alt="图片"><br>这里使用模块4.使用 use auxiliary/scanner/portscan/tcp 使用辅助模块。这个模块是基于tcp扫描的。<br><img data-src="./images/003.png" alt="图片"><table>
 <thead>
 <tr>
 <th align="center">扫描方式</th>
