@@ -91,7 +91,7 @@
 <ul>
 <li>open:开放</li>
 <li>filter:过滤</li>
-<li>close:关闭<br>同时metasploit矿架中也内置了nmap接口,也可以使用nmap进行扫描<br><img data-src="006.png" alt="图片"><br>nmap扫描有个好处，他显示对应端口的服务信息。你可以根据对应端口的服务信息来找寻漏洞。 </li>
+<li>close:关闭<br>同时metasploit矿架中也内置了nmap接口,也可以使用nmap进行扫描<br><img data-src="006.png" alt="图片"><br>nmap扫描有个好处，他显示对应端口的服务信息。你可以根据对应端口的服务信息来找寻漏洞。<br><strong><em>攻击演练</em></strong><h6 id="攻击演练"><a href="#攻击演练" class="headerlink" title="攻击演练"></a>攻击演练</h6>这里使用的靶机是win7专业版,攻击机是kali。主要漏洞利用的就是2017年暴露的是微软一个漏洞(MS17-010)有个非常好听的名字叫”永恒之蓝”。<br>想要了解他更多的故事点击<a href="https://zhuanlan.zhihu.com/p/35249719">永恒之蓝</a>。<br>metasploit框架已经有了MS17-010的exploit这里直接使用即可。<br><img data-src="007.png" alt="图片"><br>我们使用第8个exploit。<br><img data-src="008.png" alt="图片"><br>可以看到这个模块默认配置了一个payload(windows/x64/meterpreter/reverse_tcp)。这个payload的作用就是在exploit利用漏洞对目标进行攻击之后，目标机会反弹<br>一个shell连接到我们的主机。建立一个meterpreter会话。如图：<br><img data-src="009.png" alt="图片"><br>可以看到建立成功。接下来就可以使用一些命令来对目标系统进行操作已达到我们的目的。</li>
 </ul>
 ]]></content>
       <categories>
