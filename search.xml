@@ -1,104 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>metasploit</title>
-    <url>/2020/10/07/metasploit/</url>
-    <content><![CDATA[<p>metasploit的学习与使用</p>
-<a id="more"></a>
-<hr>
-<p><strong><em>metasploit简介</em></strong><br>     metasploit(Metasploit Framework)是一款开源的安全漏洞检测工具，它是完全颠覆了已有的渗透测试方式。几乎所有的流行操作系统都支持Metasploit。<br>  <a href="https://github.com/rapid7/metasploit-framework">metasploit下载地址</a>，kali里面预装了metasploit。在终端输入msfconsole即可使用。<br><strong><em>metasploit模块介绍</em></strong><br>   <img data-src="001.png" alt="图片"></p>
-<table>
-<thead>
-<tr>
-<th align="center">模块</th>
-<th align="center">作用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">auxiliary</td>
-<td align="center">辅助模块，不会与目标机建立连接，主要用于收集信息。如，嗅探，指纹识别，扫描端口等</td>
-</tr>
-<tr>
-<td align="center">exploit</td>
-<td align="center">漏洞利用模块，利用系统或应用漏洞进行攻击。</td>
-</tr>
-<tr>
-<td align="center">payload</td>
-<td align="center">攻击载荷模块，期望目标系统在被渗透攻击之后完成实际功能的代码</td>
-</tr>
-<tr>
-<td align="center">post</td>
-<td align="center">后期渗透模块，在获取目标系统控制权之后进行一系列的后渗透攻击。如:获取敏感信息等</td>
-</tr>
-<tr>
-<td align="center">encode</td>
-<td align="center">编码模块，对攻击载荷进行免杀处理防止被防火墙发现，避免在渗透过程中出现‘坏字符’</td>
-</tr>
-<tr>
-<td align="center">nops</td>
-<td align="center">空指令模块，对运行程序不会造成任何实质影响的空操作或无关操作指令。如:show nops.</td>
-</tr>
-</tbody></table>
-<hr>
-<p>   POC验证程序:当互联网暴露出高危漏洞或挖出0day，为了了解漏洞的影响面，这时候就需要POC批量验证。</p>
-<h5 id="跳板攻击"><a href="#跳板攻击" class="headerlink" title="跳板攻击"></a>跳板攻击</h5><p>   跳板攻击:攻击者通过控制N个主机向目标机进行攻击。跳板攻击分为两类：</p>
-<ul>
-<li>中继型跳板:这类不会对攻击者发送的包进行更改，容易被追踪发现。</li>
-<li>控制型跳板:这类会对攻击者发送的包进行改变，不容易被追踪<br>但不论容不容易还是什么目的，在未得对方许可授权下不要对任何网站或个人进行攻击。</li>
-</ul>
-<p><strong><em>metasploit渗透攻击步骤</em></strong><br>   简要的说明下</p>
-<ul>
-<li>找寻可利用的漏洞</li>
-<li>选择漏洞利用模块</li>
-<li>配置攻击载荷</li>
-<li>选择编码技术</li>
-<li>开始攻击<br><strong><em>metasploit模块的使用</em></strong><h5 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h5>这里使用search scanner/port查找可以用模块。如图：<br><img data-src="002.png" alt="图片"><br>这里使用模块4.使用 use auxiliary/scanner/portscan/tcp 使用辅助模块。这个模块是基于tcp扫描的。<br><img data-src="003.png" alt="图片"><table>
-<thead>
-<tr>
-<th align="center">扫描方式</th>
-<th align="center">原理</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">portmap_amp</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">ack</td>
-<td align="center">通过ACK扫描方式对防火墙上未关闭的端口进行探测</td>
-</tr>
-<tr>
-<td align="center">ftpbounce</td>
-<td align="center">通过ftp bounce攻击对的原理对TCP服务进行枚举</td>
-</tr>
-<tr>
-<td align="center">syn</td>
-<td align="center">通过发送TCP SYN标志的方式探测开放的端口</td>
-</tr>
-<tr>
-<td align="center">tcp</td>
-<td align="center">通过一次完整的TCP连接来判断端口是否开放，这种方式是最准确的，但是速度很慢</td>
-</tr>
-<tr>
-<td align="center">xmas</td>
-<td align="center">一种更为隐蔽的扫描方式，通过发送FIN.PSH和URG标志能够躲过一些高级TCP标记检测器的过滤</td>
-</tr>
-</tbody></table>
-</li>
-</ul>
-<hr>
-<h5 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h5><p>   输入info查看模块配置信息<br>   <img data-src="004.png" alt="图片"><br>   yes为必须输入，不可空缺。这里只需要设置RHOSTS(目标地址)使用set RHOSTS PATH，set PORTS number-number(探测的端口)。<br>   设置完后可以使用show options查看刚才的配置。<br>   使用exploit或者run运行模块。<br>   <img data-src="005.png" alt="图片"><br>   这里可以只扫描了1-10000的端口。<br>   端口状态有三种</p>
-<ul>
-<li>open:开放</li>
-<li>filter:过滤</li>
-<li>close:关闭<br>同时metasploit矿架中也内置了nmap接口,也可以使用nmap进行扫描<br><img data-src="006.png" alt="图片"><br>nmap扫描有个好处，他显示对应端口的服务信息。你可以根据对应端口的服务信息来找寻漏洞。<br><strong><em>攻击演练</em></strong><h6 id="攻击演练"><a href="#攻击演练" class="headerlink" title="攻击演练"></a>攻击演练</h6>这里使用的靶机是win7专业版,攻击机是kali。主要漏洞利用的就是2017年暴露的是微软一个漏洞(MS17-010)有个非常好听的名字叫”永恒之蓝”。<br>想要了解他更多的故事点击<a href="https://zhuanlan.zhihu.com/p/35249719">永恒之蓝</a>。<br>metasploit框架已经有了MS17-010的exploit这里直接使用即可。<br><img data-src="007.png" alt="图片"><br>我们使用第8个exploit。<br><img data-src="008.png" alt="图片"><br>可以看到这个模块默认配置了一个payload(windows/x64/meterpreter/reverse_tcp)。这个payload的作用就是在exploit利用漏洞对目标进行攻击之后，目标机会反弹<br>一个shell连接到我们的主机。建立一个meterpreter会话。如图：<br><img data-src="009.png" alt="图片"><br>可以看到建立成功。接下来就可以使用一些命令来对目标系统进行操作已达到我们的目的。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>渗透测试</category>
-      </categories>
-  </entry>
-  <entry>
     <title>sql注入学习</title>
     <url>/2021/04/07/sql%E6%B3%A8%E5%85%A5%E5%AD%A6%E4%B9%A0/</url>
     <content><![CDATA[<p>sql注入总结<br>sql算是接触的比较早的了，学习了之后也一直没有总结，今天就算是记录下</p>
@@ -213,7 +115,7 @@
 </li>
 <li><p>floor()函数返回括等于或小于括号值的最大整数,当floor与rand(0)*2结合就会产生一个数列011011。</p>
 </li>
-<li><p>count()用于计数<br>#报错原理：count()与group by结合起来，在进行计数时会先建立虚拟表，虚拟表有key代表主键，value代表数量。上面floor(rand(0)<em>2)产生了一个数列011011。rand函数在进行计数的时候会被多次计算,即插入key值不存在时会在计算一次floor(rand(0)*2),按照上面的数列，<br>第一次计算时为0,0不存在会插入虚拟表中,同时在进行计算一次，这时插入的就是key为1,value为1。在继续往下进行,这时就是第三<br>次计算，值为1，表中存在,直接插入，这时表中key为1 vallue为2。继续进行，rand进行第四次计算值为0,表中不存在，在计算一次，<br>值为1进行插入，但是已经存在1，key值不能重复,这时就会报错。<br>#简化的语句：select count(</em>) from information_schema.tables group by concat(database(),floor(rand(0)<em>2))<br>#关键表被禁用可以这样写:’’’sql select count(</em>) from(select 1 union select null union select !1)a group by concat(database(),floor(rand(0)*2))’’’<br>#rand被禁用还可以这样写:select min(@a:=1) from information_schema.tables group by concat(user(),@a=(@a+1)%2)<br>#利用xpath函数(extractvalue，updatevalue)进行报错注入</p>
+<li><p>count()用于计数<br>#报错原理：count()与group by结合起来，在进行计数时会先建立虚拟表，虚拟表有key代表主键，value代表数量。上面floor(rand(0)<em>2)产生了一个数列011011。rand函数在进行计数的时候会被多次计算,即插入key值不存在时会在计算一次floor(rand(0)*2),按照上面的数列，<br>第一次计算时为0,0不存在会插入虚拟表中,同时在进行计算一次，这时插入的就是key为1,value为1。在继续往下进行,这时就是第三<br>次计算，值为1，表中存在,直接插入，这时表中key为1 vallue为2。继续进行，rand进行第四次计算值为0,表中不存在，在计算一次，<br>值为1进行插入，但是已经存在1，key值不能重复,这时就会报错。<br>#简化的语句：select count(</em>) from information_schema.tables group by concat(database(),floor(rand(0)<em>2))<br>#关键表被禁用可以这样写:’’’sql<br>select count(</em>) from(select 1 union select null union select !1)a group by concat(database(),floor(rand(0)*2))<br>‘’’<br>#rand被禁用还可以这样写:select min(@a:=1) from information_schema.tables group by concat(user(),@a=(@a+1)%2)<br>#利用xpath函数(extractvalue，updatevalue)进行报错注入</p>
 </li>
 <li><p>extractvalue(目标xml文档，xml路径)。在xml查找时路径格式应该为/a/b/c。如果写入其他格式就会报错。并且返回报错的内容。</p>
 </li>
@@ -279,6 +181,104 @@
 </li>
 <li><p>如果order by后面跟的是类似于id这种数值型参数，那么可以使用异或字符与正则匹配进行注入。如：?sort=异或(select(select user())regexp ‘异或xx’<br>   如果正则匹配返回正确,那么他会返回二进制数值的1与前面的数值进行异或，那么数据的排序就会乱掉不再是升序排序。</p>
 </li>
+</ul>
+]]></content>
+      <categories>
+        <category>渗透测试</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>metasploit</title>
+    <url>/2020/10/07/metasploit/</url>
+    <content><![CDATA[<p>metasploit的学习与使用</p>
+<a id="more"></a>
+<hr>
+<p><strong><em>metasploit简介</em></strong><br>     metasploit(Metasploit Framework)是一款开源的安全漏洞检测工具，它是完全颠覆了已有的渗透测试方式。几乎所有的流行操作系统都支持Metasploit。<br>  <a href="https://github.com/rapid7/metasploit-framework">metasploit下载地址</a>，kali里面预装了metasploit。在终端输入msfconsole即可使用。<br><strong><em>metasploit模块介绍</em></strong><br>   <img data-src="001.png" alt="图片"></p>
+<table>
+<thead>
+<tr>
+<th align="center">模块</th>
+<th align="center">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">auxiliary</td>
+<td align="center">辅助模块，不会与目标机建立连接，主要用于收集信息。如，嗅探，指纹识别，扫描端口等</td>
+</tr>
+<tr>
+<td align="center">exploit</td>
+<td align="center">漏洞利用模块，利用系统或应用漏洞进行攻击。</td>
+</tr>
+<tr>
+<td align="center">payload</td>
+<td align="center">攻击载荷模块，期望目标系统在被渗透攻击之后完成实际功能的代码</td>
+</tr>
+<tr>
+<td align="center">post</td>
+<td align="center">后期渗透模块，在获取目标系统控制权之后进行一系列的后渗透攻击。如:获取敏感信息等</td>
+</tr>
+<tr>
+<td align="center">encode</td>
+<td align="center">编码模块，对攻击载荷进行免杀处理防止被防火墙发现，避免在渗透过程中出现‘坏字符’</td>
+</tr>
+<tr>
+<td align="center">nops</td>
+<td align="center">空指令模块，对运行程序不会造成任何实质影响的空操作或无关操作指令。如:show nops.</td>
+</tr>
+</tbody></table>
+<hr>
+<p>   POC验证程序:当互联网暴露出高危漏洞或挖出0day，为了了解漏洞的影响面，这时候就需要POC批量验证。</p>
+<h5 id="跳板攻击"><a href="#跳板攻击" class="headerlink" title="跳板攻击"></a>跳板攻击</h5><p>   跳板攻击:攻击者通过控制N个主机向目标机进行攻击。跳板攻击分为两类：</p>
+<ul>
+<li>中继型跳板:这类不会对攻击者发送的包进行更改，容易被追踪发现。</li>
+<li>控制型跳板:这类会对攻击者发送的包进行改变，不容易被追踪<br>但不论容不容易还是什么目的，在未得对方许可授权下不要对任何网站或个人进行攻击。</li>
+</ul>
+<p><strong><em>metasploit渗透攻击步骤</em></strong><br>   简要的说明下</p>
+<ul>
+<li>找寻可利用的漏洞</li>
+<li>选择漏洞利用模块</li>
+<li>配置攻击载荷</li>
+<li>选择编码技术</li>
+<li>开始攻击<br><strong><em>metasploit模块的使用</em></strong><h5 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h5>这里使用search scanner/port查找可以用模块。如图：<br><img data-src="002.png" alt="图片"><br>这里使用模块4.使用 use auxiliary/scanner/portscan/tcp 使用辅助模块。这个模块是基于tcp扫描的。<br><img data-src="003.png" alt="图片"><table>
+<thead>
+<tr>
+<th align="center">扫描方式</th>
+<th align="center">原理</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">portmap_amp</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">ack</td>
+<td align="center">通过ACK扫描方式对防火墙上未关闭的端口进行探测</td>
+</tr>
+<tr>
+<td align="center">ftpbounce</td>
+<td align="center">通过ftp bounce攻击对的原理对TCP服务进行枚举</td>
+</tr>
+<tr>
+<td align="center">syn</td>
+<td align="center">通过发送TCP SYN标志的方式探测开放的端口</td>
+</tr>
+<tr>
+<td align="center">tcp</td>
+<td align="center">通过一次完整的TCP连接来判断端口是否开放，这种方式是最准确的，但是速度很慢</td>
+</tr>
+<tr>
+<td align="center">xmas</td>
+<td align="center">一种更为隐蔽的扫描方式，通过发送FIN.PSH和URG标志能够躲过一些高级TCP标记检测器的过滤</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<hr>
+<h5 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h5><p>   输入info查看模块配置信息<br>   <img data-src="004.png" alt="图片"><br>   yes为必须输入，不可空缺。这里只需要设置RHOSTS(目标地址)使用set RHOSTS PATH，set PORTS number-number(探测的端口)。<br>   设置完后可以使用show options查看刚才的配置。<br>   使用exploit或者run运行模块。<br>   <img data-src="005.png" alt="图片"><br>   这里可以只扫描了1-10000的端口。<br>   端口状态有三种</p>
+<ul>
+<li>open:开放</li>
+<li>filter:过滤</li>
+<li>close:关闭<br>同时metasploit矿架中也内置了nmap接口,也可以使用nmap进行扫描<br><img data-src="006.png" alt="图片"><br>nmap扫描有个好处，他显示对应端口的服务信息。你可以根据对应端口的服务信息来找寻漏洞。<br><strong><em>攻击演练</em></strong><h6 id="攻击演练"><a href="#攻击演练" class="headerlink" title="攻击演练"></a>攻击演练</h6>这里使用的靶机是win7专业版,攻击机是kali。主要漏洞利用的就是2017年暴露的是微软一个漏洞(MS17-010)有个非常好听的名字叫”永恒之蓝”。<br>想要了解他更多的故事点击<a href="https://zhuanlan.zhihu.com/p/35249719">永恒之蓝</a>。<br>metasploit框架已经有了MS17-010的exploit这里直接使用即可。<br><img data-src="007.png" alt="图片"><br>我们使用第8个exploit。<br><img data-src="008.png" alt="图片"><br>可以看到这个模块默认配置了一个payload(windows/x64/meterpreter/reverse_tcp)。这个payload的作用就是在exploit利用漏洞对目标进行攻击之后，目标机会反弹<br>一个shell连接到我们的主机。建立一个meterpreter会话。如图：<br><img data-src="009.png" alt="图片"><br>可以看到建立成功。接下来就可以使用一些命令来对目标系统进行操作已达到我们的目的。</li>
 </ul>
 ]]></content>
       <categories>
