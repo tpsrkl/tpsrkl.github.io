@@ -292,8 +292,7 @@
     <content><![CDATA[<p>xxxx</p>
 <a id="more"></a>
 <hr>
-<p>‘’’php<br>xxxxxx<br>‘’’</p>
-]]></content>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">xxxxxx</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>xxxx</category>
       </categories>
