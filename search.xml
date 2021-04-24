@@ -1,16 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>攻防</title>
-    <url>/2020/07/17/%E6%94%BB%E9%98%B2/</url>
-    <content><![CDATA[<p>攻防</p>
+    <title>metasploit</title>
+    <url>/2020/10/07/metasploit/</url>
+    <content><![CDATA[<p>metasploit的学习与使用</p>
 <a id="more"></a>
 <hr>
-<p>1.<img data-src="https://img-blog.csdnimg.cn/20200717203900284.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/20200717203927844.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">)WP：题目定义了一个demo类，首先包含构造函数，析构函数，和魔术方法（——wakeup()）当变量进行反序列化时回先执行wakeup函数,以及私有变量file。这里提示flag在fl4g.php之中，当实例销毁时会输出变量。再看下面GET传参var变量，变量经过base64解密，解密后经过正则表达式，若var变量存在o或者C不区分大小写输出stop hacking。否则进行发序列化。现在就是构造var变量的值。正则表达式可以采用+绕过，而wakeup在小于PHP7版本下可以通过实例值与对象值不相等绕过，再将fl4g.php进行序列化<br>O:4:”Demo”:1:{s:10:”Demofile”;s:8:”fl4g.php”;}在进行base64加密即可得到flag.<br>2.<img data-src="https://img-blog.csdnimg.cn/20200717205451969.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">/<br><img data-src="https://img-blog.csdnimg.cn/20200717205728637.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">WP:打开题目发现是个搜索框猜测题目类型为sql注入。使用SQL语句’ and 0 union select 1,TABLE_SCHEMA,TABLE_NAME from INFORMATION_SCHEMA.COLUMNS #去得到表名。<br><img data-src="https://img-blog.csdnimg.cn/20200717210932499.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="发现"><br>发现咱们需要的东西：secret_table。接下来去获取表单的内容’ and 0 union select 1,column_name,data_type from information_schema.columns where table_name=’secret_table’# 得到 secret_table。<br><img data-src="https://img-blog.csdnimg.cn/20200717211202256.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="发现"><br>发现flag存在的位置以记名字。<br>‘ and 0 union select 1,2,fl4g from secret_table #去得到flag。上述’去闭合前一个’，#去闭合最后一个。<br>3.<img data-src="https://img-blog.csdnimg.cn/20200717211510728.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="WP"><br>WP：这个题目是带一个附件的解压后是这样的<img data-src="https://img-blog.csdnimg.cn/2020071721164687.png!%5B%E5%9C%A8%E8%BF%99%E9%87%8C%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E6%8F%8F%E8%BF%B0%5D(https://img-blog.csdnimg.cn/2020071721174890.png" alt="在这里插入图片描述"></p>
-<p>发现是这样的，里面是js语句，这里咱们猜测改下后缀名为.html，打开后页面时<img data-src="https://img-blog.csdnimg.cn/2020071721191654.png" alt="在这里插入图片描述">咱们再看下代码发现后面有个eval函数，这里咱们改为alert（），让页面去弹出源代码<br><img data-src="https://img-blog.csdnimg.cn/2020071721214696.png" alt="在这里插入图片描述"><br>在这个代码中要根据特定的正则表达式去得到var变量的值，再输入到搜索框中即可得到flag.根据代码得知var变量要16位以beof开头98aa结尾中间包含233ac和e98aa这样得到var变量值即可得到flag.<br>4.<img data-src="https://img-blog.csdnimg.cn/20200717212650602.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/20200717212701748.png" alt="在这里插入图片描述"><br>WP：这里我们打开题目发现一段英文，意思是你能得到这个真正的网站吗？咱们先输入index.php发现页面没有变化，再试试输入index.phps.发现<img data-src="https://img-blog.csdnimg.cn/20200717213020358.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>这里要让id get传参后经过URLdecode不等于admin，第二要让admin等于id即可得到flag.这里代码进行了一次urldecode,再加上地址栏中一次总共两次，这里id 要满足两个条件必须url编码两次。即可得到flag。<br>5.<img data-src="https://img-blog.csdnimg.cn/20200717214151849.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/20200717214326192.png" alt="在这里插入图片描述"><br>WP：这里看到wakeup猜测为反序列化问题，同上第二题绕过wakeup，传参给code即可。O:4:”xctf”:2:{s:4:”flag”;s:3:”111”;}</p>
+<p><strong><em>metasploit简介</em></strong><br>     metasploit(Metasploit Framework)是一款开源的安全漏洞检测工具，它是完全颠覆了已有的渗透测试方式。几乎所有的流行操作系统都支持Metasploit。<br>  <a href="https://github.com/rapid7/metasploit-framework">metasploit下载地址</a>，kali里面预装了metasploit。在终端输入msfconsole即可使用。<br><strong><em>metasploit模块介绍</em></strong><br>   <img data-src="001.png" alt="图片"></p>
+<table>
+<thead>
+<tr>
+<th align="center">模块</th>
+<th align="center">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">auxiliary</td>
+<td align="center">辅助模块，不会与目标机建立连接，主要用于收集信息。如，嗅探，指纹识别，扫描端口等</td>
+</tr>
+<tr>
+<td align="center">exploit</td>
+<td align="center">漏洞利用模块，利用系统或应用漏洞进行攻击。</td>
+</tr>
+<tr>
+<td align="center">payload</td>
+<td align="center">攻击载荷模块，期望目标系统在被渗透攻击之后完成实际功能的代码</td>
+</tr>
+<tr>
+<td align="center">post</td>
+<td align="center">后期渗透模块，在获取目标系统控制权之后进行一系列的后渗透攻击。如:获取敏感信息等</td>
+</tr>
+<tr>
+<td align="center">encode</td>
+<td align="center">编码模块，对攻击载荷进行免杀处理防止被防火墙发现，避免在渗透过程中出现‘坏字符’</td>
+</tr>
+<tr>
+<td align="center">nops</td>
+<td align="center">空指令模块，对运行程序不会造成任何实质影响的空操作或无关操作指令。如:show nops.</td>
+</tr>
+</tbody></table>
+<hr>
+<p>   POC验证程序:当互联网暴露出高危漏洞或挖出0day，为了了解漏洞的影响面，这时候就需要POC批量验证。</p>
+<h5 id="跳板攻击"><a href="#跳板攻击" class="headerlink" title="跳板攻击"></a>跳板攻击</h5><p>   跳板攻击:攻击者通过控制N个主机向目标机进行攻击。跳板攻击分为两类：</p>
+<ul>
+<li>中继型跳板:这类不会对攻击者发送的包进行更改，容易被追踪发现。</li>
+<li>控制型跳板:这类会对攻击者发送的包进行改变，不容易被追踪<br>但不论容不容易还是什么目的，在未得对方许可授权下不要对任何网站或个人进行攻击。</li>
+</ul>
+<p><strong><em>metasploit渗透攻击步骤</em></strong><br>   简要的说明下</p>
+<ul>
+<li>找寻可利用的漏洞</li>
+<li>选择漏洞利用模块</li>
+<li>配置攻击载荷</li>
+<li>选择编码技术</li>
+<li>开始攻击<br><strong><em>metasploit模块的使用</em></strong><h5 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h5>这里使用search scanner/port查找可以用模块。如图：<br><img data-src="002.png" alt="图片"><br>这里使用模块4.使用 use auxiliary/scanner/portscan/tcp 使用辅助模块。这个模块是基于tcp扫描的。<br><img data-src="003.png" alt="图片"><table>
+<thead>
+<tr>
+<th align="center">扫描方式</th>
+<th align="center">原理</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">portmap_amp</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">ack</td>
+<td align="center">通过ACK扫描方式对防火墙上未关闭的端口进行探测</td>
+</tr>
+<tr>
+<td align="center">ftpbounce</td>
+<td align="center">通过ftp bounce攻击对的原理对TCP服务进行枚举</td>
+</tr>
+<tr>
+<td align="center">syn</td>
+<td align="center">通过发送TCP SYN标志的方式探测开放的端口</td>
+</tr>
+<tr>
+<td align="center">tcp</td>
+<td align="center">通过一次完整的TCP连接来判断端口是否开放，这种方式是最准确的，但是速度很慢</td>
+</tr>
+<tr>
+<td align="center">xmas</td>
+<td align="center">一种更为隐蔽的扫描方式，通过发送FIN.PSH和URG标志能够躲过一些高级TCP标记检测器的过滤</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<hr>
+<h5 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h5><p>   输入info查看模块配置信息<br>   <img data-src="004.png" alt="图片"><br>   yes为必须输入，不可空缺。这里只需要设置RHOSTS(目标地址)使用set RHOSTS PATH，set PORTS number-number(探测的端口)。<br>   设置完后可以使用show options查看刚才的配置。<br>   使用exploit或者run运行模块。<br>   <img data-src="005.png" alt="图片"><br>   这里可以只扫描了1-10000的端口。<br>   端口状态有三种</p>
+<ul>
+<li>open:开放</li>
+<li>filter:过滤</li>
+<li>close:关闭<br>同时metasploit矿架中也内置了nmap接口,也可以使用nmap进行扫描<br><img data-src="006.png" alt="图片"><br>nmap扫描有个好处，他显示对应端口的服务信息。你可以根据对应端口的服务信息来找寻漏洞。<br><strong><em>攻击演练</em></strong><h6 id="攻击演练"><a href="#攻击演练" class="headerlink" title="攻击演练"></a>攻击演练</h6>这里使用的靶机是win7专业版,攻击机是kali。主要漏洞利用的就是2017年暴露的是微软一个漏洞(MS17-010)有个非常好听的名字叫”永恒之蓝”。<br>想要了解他更多的故事点击<a href="https://zhuanlan.zhihu.com/p/35249719">永恒之蓝</a>。<br>metasploit框架已经有了MS17-010的exploit这里直接使用即可。<br><img data-src="007.png" alt="图片"><br>我们使用第8个exploit。<br><img data-src="008.png" alt="图片"><br>可以看到这个模块默认配置了一个payload(windows/x64/meterpreter/reverse_tcp)。这个payload的作用就是在exploit利用漏洞对目标进行攻击之后，目标机会反弹<br>一个shell连接到我们的主机。建立一个meterpreter会话。如图：<br><img data-src="009.png" alt="图片"><br>可以看到建立成功。接下来就可以使用一些命令来对目标系统进行操作已达到我们的目的。</li>
+</ul>
 ]]></content>
       <categories>
-        <category>攻防</category>
+        <category>渗透测试</category>
       </categories>
   </entry>
   <entry>
@@ -206,101 +291,16 @@
       </categories>
   </entry>
   <entry>
-    <title>metasploit</title>
-    <url>/2020/10/07/metasploit/</url>
-    <content><![CDATA[<p>metasploit的学习与使用</p>
+    <title>攻防</title>
+    <url>/2020/07/17/%E6%94%BB%E9%98%B2/</url>
+    <content><![CDATA[<p>攻防</p>
 <a id="more"></a>
 <hr>
-<p><strong><em>metasploit简介</em></strong><br>     metasploit(Metasploit Framework)是一款开源的安全漏洞检测工具，它是完全颠覆了已有的渗透测试方式。几乎所有的流行操作系统都支持Metasploit。<br>  <a href="https://github.com/rapid7/metasploit-framework">metasploit下载地址</a>，kali里面预装了metasploit。在终端输入msfconsole即可使用。<br><strong><em>metasploit模块介绍</em></strong><br>   <img data-src="001.png" alt="图片"></p>
-<table>
-<thead>
-<tr>
-<th align="center">模块</th>
-<th align="center">作用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">auxiliary</td>
-<td align="center">辅助模块，不会与目标机建立连接，主要用于收集信息。如，嗅探，指纹识别，扫描端口等</td>
-</tr>
-<tr>
-<td align="center">exploit</td>
-<td align="center">漏洞利用模块，利用系统或应用漏洞进行攻击。</td>
-</tr>
-<tr>
-<td align="center">payload</td>
-<td align="center">攻击载荷模块，期望目标系统在被渗透攻击之后完成实际功能的代码</td>
-</tr>
-<tr>
-<td align="center">post</td>
-<td align="center">后期渗透模块，在获取目标系统控制权之后进行一系列的后渗透攻击。如:获取敏感信息等</td>
-</tr>
-<tr>
-<td align="center">encode</td>
-<td align="center">编码模块，对攻击载荷进行免杀处理防止被防火墙发现，避免在渗透过程中出现‘坏字符’</td>
-</tr>
-<tr>
-<td align="center">nops</td>
-<td align="center">空指令模块，对运行程序不会造成任何实质影响的空操作或无关操作指令。如:show nops.</td>
-</tr>
-</tbody></table>
-<hr>
-<p>   POC验证程序:当互联网暴露出高危漏洞或挖出0day，为了了解漏洞的影响面，这时候就需要POC批量验证。</p>
-<h5 id="跳板攻击"><a href="#跳板攻击" class="headerlink" title="跳板攻击"></a>跳板攻击</h5><p>   跳板攻击:攻击者通过控制N个主机向目标机进行攻击。跳板攻击分为两类：</p>
-<ul>
-<li>中继型跳板:这类不会对攻击者发送的包进行更改，容易被追踪发现。</li>
-<li>控制型跳板:这类会对攻击者发送的包进行改变，不容易被追踪<br>但不论容不容易还是什么目的，在未得对方许可授权下不要对任何网站或个人进行攻击。</li>
-</ul>
-<p><strong><em>metasploit渗透攻击步骤</em></strong><br>   简要的说明下</p>
-<ul>
-<li>找寻可利用的漏洞</li>
-<li>选择漏洞利用模块</li>
-<li>配置攻击载荷</li>
-<li>选择编码技术</li>
-<li>开始攻击<br><strong><em>metasploit模块的使用</em></strong><h5 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h5>这里使用search scanner/port查找可以用模块。如图：<br><img data-src="002.png" alt="图片"><br>这里使用模块4.使用 use auxiliary/scanner/portscan/tcp 使用辅助模块。这个模块是基于tcp扫描的。<br><img data-src="003.png" alt="图片"><table>
-<thead>
-<tr>
-<th align="center">扫描方式</th>
-<th align="center">原理</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">portmap_amp</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">ack</td>
-<td align="center">通过ACK扫描方式对防火墙上未关闭的端口进行探测</td>
-</tr>
-<tr>
-<td align="center">ftpbounce</td>
-<td align="center">通过ftp bounce攻击对的原理对TCP服务进行枚举</td>
-</tr>
-<tr>
-<td align="center">syn</td>
-<td align="center">通过发送TCP SYN标志的方式探测开放的端口</td>
-</tr>
-<tr>
-<td align="center">tcp</td>
-<td align="center">通过一次完整的TCP连接来判断端口是否开放，这种方式是最准确的，但是速度很慢</td>
-</tr>
-<tr>
-<td align="center">xmas</td>
-<td align="center">一种更为隐蔽的扫描方式，通过发送FIN.PSH和URG标志能够躲过一些高级TCP标记检测器的过滤</td>
-</tr>
-</tbody></table>
-</li>
-</ul>
-<hr>
-<h5 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h5><p>   输入info查看模块配置信息<br>   <img data-src="004.png" alt="图片"><br>   yes为必须输入，不可空缺。这里只需要设置RHOSTS(目标地址)使用set RHOSTS PATH，set PORTS number-number(探测的端口)。<br>   设置完后可以使用show options查看刚才的配置。<br>   使用exploit或者run运行模块。<br>   <img data-src="005.png" alt="图片"><br>   这里可以只扫描了1-10000的端口。<br>   端口状态有三种</p>
-<ul>
-<li>open:开放</li>
-<li>filter:过滤</li>
-<li>close:关闭<br>同时metasploit矿架中也内置了nmap接口,也可以使用nmap进行扫描<br><img data-src="006.png" alt="图片"><br>nmap扫描有个好处，他显示对应端口的服务信息。你可以根据对应端口的服务信息来找寻漏洞。<br><strong><em>攻击演练</em></strong><h6 id="攻击演练"><a href="#攻击演练" class="headerlink" title="攻击演练"></a>攻击演练</h6>这里使用的靶机是win7专业版,攻击机是kali。主要漏洞利用的就是2017年暴露的是微软一个漏洞(MS17-010)有个非常好听的名字叫”永恒之蓝”。<br>想要了解他更多的故事点击<a href="https://zhuanlan.zhihu.com/p/35249719">永恒之蓝</a>。<br>metasploit框架已经有了MS17-010的exploit这里直接使用即可。<br><img data-src="007.png" alt="图片"><br>我们使用第8个exploit。<br><img data-src="008.png" alt="图片"><br>可以看到这个模块默认配置了一个payload(windows/x64/meterpreter/reverse_tcp)。这个payload的作用就是在exploit利用漏洞对目标进行攻击之后，目标机会反弹<br>一个shell连接到我们的主机。建立一个meterpreter会话。如图：<br><img data-src="009.png" alt="图片"><br>可以看到建立成功。接下来就可以使用一些命令来对目标系统进行操作已达到我们的目的。</li>
-</ul>
+<p>1.<img data-src="https://img-blog.csdnimg.cn/20200717203900284.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/20200717203927844.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">)WP：题目定义了一个demo类，首先包含构造函数，析构函数，和魔术方法（——wakeup()）当变量进行反序列化时回先执行wakeup函数,以及私有变量file。这里提示flag在fl4g.php之中，当实例销毁时会输出变量。再看下面GET传参var变量，变量经过base64解密，解密后经过正则表达式，若var变量存在o或者C不区分大小写输出stop hacking。否则进行发序列化。现在就是构造var变量的值。正则表达式可以采用+绕过，而wakeup在小于PHP7版本下可以通过实例值与对象值不相等绕过，再将fl4g.php进行序列化<br>O:4:”Demo”:1:{s:10:”Demofile”;s:8:”fl4g.php”;}在进行base64加密即可得到flag.<br>2.<img data-src="https://img-blog.csdnimg.cn/20200717205451969.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">/<br><img data-src="https://img-blog.csdnimg.cn/20200717205728637.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">WP:打开题目发现是个搜索框猜测题目类型为sql注入。使用SQL语句’ and 0 union select 1,TABLE_SCHEMA,TABLE_NAME from INFORMATION_SCHEMA.COLUMNS #去得到表名。<br><img data-src="https://img-blog.csdnimg.cn/20200717210932499.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="发现"><br>发现咱们需要的东西：secret_table。接下来去获取表单的内容’ and 0 union select 1,column_name,data_type from information_schema.columns where table_name=’secret_table’# 得到 secret_table。<br><img data-src="https://img-blog.csdnimg.cn/20200717211202256.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="发现"><br>发现flag存在的位置以记名字。<br>‘ and 0 union select 1,2,fl4g from secret_table #去得到flag。上述’去闭合前一个’，#去闭合最后一个。<br>3.<img data-src="https://img-blog.csdnimg.cn/20200717211510728.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="WP"><br>WP：这个题目是带一个附件的解压后是这样的<img data-src="https://img-blog.csdnimg.cn/2020071721164687.png!%5B%E5%9C%A8%E8%BF%99%E9%87%8C%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E6%8F%8F%E8%BF%B0%5D(https://img-blog.csdnimg.cn/2020071721174890.png" alt="在这里插入图片描述"></p>
+<p>发现是这样的，里面是js语句，这里咱们猜测改下后缀名为.html，打开后页面时<img data-src="https://img-blog.csdnimg.cn/2020071721191654.png" alt="在这里插入图片描述">咱们再看下代码发现后面有个eval函数，这里咱们改为alert（），让页面去弹出源代码<br><img data-src="https://img-blog.csdnimg.cn/2020071721214696.png" alt="在这里插入图片描述"><br>在这个代码中要根据特定的正则表达式去得到var变量的值，再输入到搜索框中即可得到flag.根据代码得知var变量要16位以beof开头98aa结尾中间包含233ac和e98aa这样得到var变量值即可得到flag.<br>4.<img data-src="https://img-blog.csdnimg.cn/20200717212650602.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/20200717212701748.png" alt="在这里插入图片描述"><br>WP：这里我们打开题目发现一段英文，意思是你能得到这个真正的网站吗？咱们先输入index.php发现页面没有变化，再试试输入index.phps.发现<img data-src="https://img-blog.csdnimg.cn/20200717213020358.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>这里要让id get传参后经过URLdecode不等于admin，第二要让admin等于id即可得到flag.这里代码进行了一次urldecode,再加上地址栏中一次总共两次，这里id 要满足两个条件必须url编码两次。即可得到flag。<br>5.<img data-src="https://img-blog.csdnimg.cn/20200717214151849.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/20200717214326192.png" alt="在这里插入图片描述"><br>WP：这里看到wakeup猜测为反序列化问题，同上第二题绕过wakeup，传参给code即可。O:4:”xctf”:2:{s:4:”flag”;s:3:”111”;}</p>
 ]]></content>
       <categories>
-        <category>渗透测试</category>
+        <category>攻防</category>
       </categories>
   </entry>
   <entry>
