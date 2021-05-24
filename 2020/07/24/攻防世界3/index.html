@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.1">
+<meta name="generator" content="Hexo 5.4.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -23,7 +23,7 @@
 
   <meta name="description" content="攻防">
 <meta property="og:type" content="article">
-<meta property="og:title" content="攻防世界3">
+<meta property="og:title" content="嘘">
 <meta property="og:url" content="http://yoursite.com/2020/07/24/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C3/index.html">
 <meta property="og:site_name" content="嘘">
 <meta property="og:description" content="攻防">
@@ -79,7 +79,7 @@
   };
 </script>
 
-  <title>攻防世界3 | 嘘</title>
+  <title> | 嘘</title>
   
 
 
@@ -240,7 +240,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          攻防世界3
+          
         </h1>
 
         <div class="post-meta">
@@ -295,7 +295,7 @@
 
       
         <p>攻防</p>
-<a id="more"></a>
+<span id="more"></span>
 <hr>
 <p>1.文件上传<img data-src="https://img-blog.csdnimg.cn/2020072417212997.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/20200724172229573.png" alt="在这里插入图片描述"><br>WP:根据题目以及题目打开的连接猜测，这道题是利用了文件上传漏洞。<br>当我们上传jpg文件时发现上传成功<br><img data-src="https://img-blog.csdnimg.cn/20200724172414577.png" alt="在这里插入图片描述"><br>而但我们上传php文件时发现提示不能上传并且上传按钮被禁用。<br><img data-src="https://img-blog.csdnimg.cn/20200724172518841.png" alt="在这里插入图片描述"><br>这里咱们可以直接使用burp抓包修改文件后缀名从而达到上传一句话木马的目的。<br>!<img data-src="https://img-blog.csdnimg.cn/20200724173455597.png" alt="在这里插入图片描述">这里咱们修改1.jpg为php<br><img data-src="https://img-blog.csdnimg.cn/20200724173551512.png" alt="在这里插入图片描述"><br>看见图片上传成功，接下来使用菜刀连接。<br><img data-src="https://img-blog.csdnimg.cn/2020072417370469.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>发现flag.<br>2.SQL注入<br><img data-src="https://img-blog.csdnimg.cn/20200724173818620.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/20200724174214797.png" alt="在这里插入图片描述"><br>WP：看见这个输入框咱们输入1’试试<br><img data-src="https://img-blog.csdnimg.cn/20200724174434137.png" alt="在这里插入图片描述"><br>发现报错说明存在SQL注入漏洞。按照常规SQL注入测试，发现order by 2成功而order by 3 失败。说明存在2个字段。<br><img data-src="https://img-blog.csdnimg.cn/20200724185625667.png" alt="在这里插入图片描述">接下来利用union select 爆字段发现<img data-src="https://img-blog.csdnimg.cn/20200724190517261.png" alt="在这里插入图片描述"></p>
 <p>上面的字符都被过滤了。<br>咱们接着试试堆叠注入。发现了与题目相同的字段<img data-src="https://img-blog.csdnimg.cn/20200724190733629.png" alt="在这里插入图片描述">接下来使用数据库查看表单.<br><img data-src="https://img-blog.csdnimg.cn/20200724190844452.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">查看表单中的列。这是words表单的列<br><img data-src="https://img-blog.csdnimg.cn/20200724191118339.png" alt="在这里插入图片描述"><br>这是一串数字那个表单中的列<br><img data-src="https://img-blog.csdnimg.cn/2020072419132483.png" alt="在这里插入图片描述"><br>在这里发现了flag存在的位置，从表的字段中得出words表单是默认查询的表单，接下来咱们将数字表单更改为默认表单。<br>1’;rename tables <code>words</code> to <code>words1</code>;rename tables <code>1919810931114514</code> to <code>words</code>; alter table <code>words</code> change <code>flag</code> <code>id</code> varchar(100);#<br>然后用恒真表达式得到flag.<br>3.解密<br><img data-src="https://img-blog.csdnimg.cn/20200724192504362.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/20200724192524949.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>WP：题目提示此题为逆向加解密解出miven即可得到flag，在代码中他先使用base64,strrev,str_rot13开始加密，咱们写逆向代码时就逆着顺序来。<br><img data-src="https://img-blog.csdnimg.cn/20200724192829647.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>即可得到flag。<br>4.<br>!<img data-src="https://img-blog.csdnimg.cn/20200724205525707.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><a href="https://img-blog.csdnimg.cn/20200724195314107.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70">在这里插入图片描述</a><br>WP:这道题目打开页面没有什么可得到的内容查看源码，发现<img data-src="https://img-blog.csdnimg.cn/20200724195512597.png" alt="在这里插入图片描述"><br>但是输入page=flag却什么都没有，但是在about下发现了git猜测是git源码泄露<br><img data-src="https://img-blog.csdnimg.cn/20200724195639372.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">输入.git发现<br><img data-src="https://img-blog.csdnimg.cn/20200724195755146.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>知道了是git源码泄露,使用githack下载源码<br><img data-src="https://img-blog.csdnimg.cn/20200724202200392.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>接下来分析index.php<img data-src="https://img-blog.csdnimg.cn/20200724202347489.png" alt="在这里插入图片描述"><br>它里面存在assert函数他会把里面的字符当做代码来执行。接下来就行用这个函数来构造payload  $file=’.system(“cat templates/flag.php”).即可得到flag.<br>5.<img data-src="https://img-blog.csdnimg.cn/20200724205639891.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/20200724205652868.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
@@ -315,12 +315,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/07/17/%E6%94%BB%E9%98%B2/" rel="prev" title="攻防">
-      <i class="fa fa-chevron-left"></i> 攻防
+    <a href="/2020/07/17/%E6%94%BB%E9%98%B2/" rel="prev" title="">
+      <i class="fa fa-chevron-left"></i> 
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/08/01/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C4/" rel="next" title="攻防世界4">
-      攻防世界4 <i class="fa fa-chevron-right"></i>
+    <a href="/2020/08/01/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C4/" rel="next" title="">
+       <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -447,13 +447,13 @@
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">15k</span>
+    <span title="站点总字数">11k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">13 分钟</span>
+    <span title="站点阅读时长">10 分钟</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.1">
+<meta name="generator" content="Hexo 5.4.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -23,7 +23,7 @@
 
   <meta name="description" content="攻防">
 <meta property="og:type" content="article">
-<meta property="og:title" content="攻防世界7">
+<meta property="og:title" content="嘘">
 <meta property="og:url" content="http://yoursite.com/2020/08/21/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C7/index.html">
 <meta property="og:site_name" content="嘘">
 <meta property="og:description" content="攻防">
@@ -72,7 +72,7 @@
   };
 </script>
 
-  <title>攻防世界7 | 嘘</title>
+  <title> | 嘘</title>
   
 
 
@@ -233,7 +233,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          攻防世界7
+          
         </h1>
 
         <div class="post-meta">
@@ -288,7 +288,7 @@
 
       
         <p>攻防</p>
-<a id="more"></a>
+<span id="more"></span>
 <hr>
 <p>1.<img data-src="https://img-blog.csdnimg.cn/20200821200447879.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/20200821200619769.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>WP:打开文件后发现是张图片。我们用图片分析器打开。<br><img data-src="https://img-blog.csdnimg.cn/20200821201129251.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>这里也没有flag的线索。最后在下面这个按钮发现flag.<br><img data-src="https://img-blog.csdnimg.cn/20200821201255773.png#pic_center" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/20200821201307481.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>2.<img data-src="https://img-blog.csdnimg.cn/20200821201742996.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>WP:用winhex打开解压后的文件发现<br><img data-src="https://img-blog.csdnimg.cn/20200821202612880.png#pic_center" alt="在这里插入图片描述"><br>50 4B 03 04可知文件类型为zip类型。修改文件后缀名后打开文件。<br><img data-src="https://img-blog.csdnimg.cn/20200821202810282.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>发现flag文件但是打开它需要密码。利用软件破解密码得到flag<br><img data-src="https://img-blog.csdnimg.cn/20200821203654121.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>flag{ev3n::y0u::bru7us?!}<br>3.<img data-src="https://img-blog.csdnimg.cn/2020082120411822.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>WP：打开文件发现是张倒立的flag.直接编辑垂直翻转<br><img data-src="https://img-blog.csdnimg.cn/20200821204310502.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>4.<img data-src="https://img-blog.csdnimg.cn/20200821204512536.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>WP:打开后发现是个游戏游戏的意思就是不要让猫走到边缘。结束后就有<br><img data-src="https://img-blog.csdnimg.cn/20200821204909167.png#pic_center" alt="在这里插入图片描述"><br>5.<img data-src="https://img-blog.csdnimg.cn/20200821205258616.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>WP：打开后发现<img data-src="https://img-blog.csdnimg.cn/20200821205453863.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>使用StegSolve打开往左翻页发现一个二维码扫描后发现<br><img data-src="https://img-blog.csdnimg.cn/20200821205647792.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><img data-src="https://img-blog.csdnimg.cn/20200821205952169.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>得到一串16进制数字。开头为03F3知道他的后缀为.pyc将其转换为py文件<br><img data-src="https://img-blog.csdnimg.cn/20200821210541293.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>调用下函数得到AlphaLab.<br>6.<img data-src="https://img-blog.csdnimg.cn/20200821210853988.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>WP:文件解压后发现没有后缀直接放入winhex,发现<img data-src="https://img-blog.csdnimg.cn/20200821211721164.png#pic_center" alt="在这里插入图片描述"><br>修改后缀名得到一段音频，用audadicy工具打开选择频谱图即可得到flag<br><img data-src="https://img-blog.csdnimg.cn/2020082121215433.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>7.<img data-src="https://img-blog.csdnimg.cn/20200821212612174.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>WP:下载的时候发现文件后缀名为gz，使用binwalk(用于多重文件分离)查看下<br><img data-src="https://img-blog.csdnimg.cn/20200821214254379.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>发现文件类型为tar。解压后发现<img data-src="https://img-blog.csdnimg.cn/20200821214549487.png#pic_center" alt="在这里插入图片描述"><br>这两张图片使用stegslove合成下得到flag</p>
 <p><img data-src="https://img-blog.csdnimg.cn/20200821214758286.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MDMxMjc1,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
@@ -307,12 +307,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/08/14/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C5/" rel="prev" title="攻防世界5">
-      <i class="fa fa-chevron-left"></i> 攻防世界5
+    <a href="/2020/08/14/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C5/" rel="prev" title="">
+      <i class="fa fa-chevron-left"></i> 
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/10/07/metasploit/" rel="next" title="metasploit">
-      metasploit <i class="fa fa-chevron-right"></i>
+    <a href="/2020/10/07/metasploit/" rel="next" title="">
+       <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -439,13 +439,13 @@
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">15k</span>
+    <span title="站点总字数">11k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">13 分钟</span>
+    <span title="站点阅读时长">10 分钟</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
